@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- 🔒 CSP SECURITY -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://*.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co ws://*.supabase.co wss://*.supabase.co;">
+  <title>M-Audio PRO — Admin Panel (SECURE)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="ADMIN.css"/>
+  <link rel="stylesheet" href="MA_CALENDAR.css"/>
+  <link rel="stylesheet" href="MA_SELECT.css"/>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-logo">
+  <img src="PHOTOS/LOGO FR THIS TIME.png" alt="Logo" class="sb-logo-img">
+  
+  <div class="sb-logo-text">
+    <span class="sb-logo-main">M-AUDIO PRO</span>
+    <span class="sb-logo-sub">ADMIN PANEL</span>
+  </div>
+</div>
+  <div class="sb-section">
+    <div class="sb-section-label">OVERVIEW</div>
+    <div class="sb-item active" data-page="dashboard"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="12" width="4" height="8" rx="1"/><rect x="9" y="5" width="4" height="15" rx="1"/><rect x="16" y="9" width="4" height="11" rx="1"/></svg></span>Dashboard</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-label">EVENTS</div>
+    <div class="sb-item" data-page="bookings"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg></span>Bookings<span class="sb-badge">5</span></div>
+    <div class="sb-item" data-page="clients"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Clients</div>
+    <div class="sb-item" data-page="packages"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="14" r="1.5"/><circle cx="12" cy="6" r="1" fill="currentColor" stroke="none"/></svg></span>Packages</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-label">OPERATIONS</div>
+    <div class="sb-item" data-page="crew"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>Crew Management</div>
+    <div class="sb-item" data-page="calendar"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></span>Calendar</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-label">FINANCE</div>
+    <div class="sb-item" data-page="finance"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>Financial Reports</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-label">SYSTEM</div>
+    <div class="sb-item" data-page="aboutus"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>About Us</div>
+    <div class="sb-item" data-page="settings"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></span>Settings</div>
+    <div class="sb-item" onclick="adminLogout()" style="color:#f87171;margin-top:.25rem"><span class="sb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>Logout</div>
+  </div>
+  <div class="sb-user">
+    <div class="sb-avatar"><img src="PHOTOS/2.jpg" alt="M-Audio" class="sb-avatar-img"></div>
+    <div class="sb-user-info">
+      <div class="sb-user-name">Admin</div>
+      <div class="sb-user-role">SYSTEM ADMINISTRATOR</div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <button class="mob-menu-btn" id="mobMenuBtn" onclick="toggleSidebar()" title="Menu">☰</button>
+      <div class="topbar-title" id="topbarTitle">DASHBOARD</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-time" id="topbarClock">--:-- --</div>
+      <a href="MAUDIO.html" class="topbar-site-btn">← SITE</a>
+      <button class="topbar-notif" title="Notifications" onclick="showNotifDropdown(this)" style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gray)"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+    </button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div class="page-header-left"><h1>DASHBOARD</h1><p>Welcome back, Admin. Here's what's happening today.</p></div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card stat-card-link stat-card-click" data-dash-card="pending"
+             style="--accent:#e8180c" role="button" tabindex="0"
+             title="View pending bookings"
+             onclick="goToDashCard(this,'bookings','pending')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToDashCard(this,'bookings','pending')}">
+          <div class="stat-icon-svg"><i data-lucide="calendar-clock" style="width:22px;height:22px;color:#e8180c;opacity:.8"></i></div>
+          <div class="stat-label">Awaiting Confirmation</div>
+          <div class="stat-val" id="dashStatPending">—</div>
+          <div class="stat-sub" id="dashStatPendingSub">Pending gigs</div>
+        </div>
+        <div class="stat-card stat-card-link stat-card-click" data-dash-card="revenue"
+             style="--accent:#22c55e" role="button" tabindex="0"
+             title="View financial reports"
+             onclick="goToDashCard(this,'finance')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToDashCard(this,'finance')}">
+          <div class="stat-icon-svg"><i data-lucide="banknotes" style="width:22px;height:22px;color:#22c55e;opacity:.8"></i></div>
+          <div class="stat-label">Down Payments Collected</div>
+          <div class="stat-val" id="dashStatRevenue">—</div>
+          <div class="stat-sub" id="dashStatRevenueSub">This month</div>
+        </div>
+        <div class="stat-card stat-card-link stat-card-click" data-dash-card="crew"
+             style="--accent:#3b82f6" role="button" tabindex="0"
+             title="View crew management"
+             onclick="goToDashCard(this,'crew')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToDashCard(this,'crew')}">
+          <div class="stat-icon-svg"><i data-lucide="headphones" style="width:22px;height:22px;color:#3b82f6;opacity:.8"></i></div>
+          <div class="stat-label">Crew Members</div>
+          <div class="stat-val" id="dashStatCrew">—</div>
+          <div class="stat-sub">In the system</div>
+        </div>
+        <div class="stat-card stat-card-link stat-card-click" data-dash-card="clients"
+             style="--accent:#eab308" role="button" tabindex="0"
+             title="View clients"
+             onclick="goToDashCard(this,'clients')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToDashCard(this,'clients')}">
+          <div class="stat-icon-svg"><i data-lucide="users" style="width:22px;height:22px;color:#eab308;opacity:.8"></i></div>
+          <div class="stat-label">Unique Clients</div>
+          <div class="stat-val" id="dashStatClients">—</div>
+          <div class="stat-sub">All-time client base</div>
+        </div>
+      </div>
+      <div class="dash-grid">
+        <div class="card">
+          <div class="card-header"><span class="card-title">UPCOMING BOOKINGS</span><button class="btn btn-ghost" style="padding:0.35rem 0.9rem;font-size:0.75rem" onclick="navigate('bookings')">View All</button></div>
+          <div class="card-body" style="padding:0.5rem 1.25rem" id="dashUpcoming">
+            <p style="color:var(--gray2);font-size:.82rem;padding:.5rem 0">Loading…</p>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:1.25rem">
+            <div class="card-header"><span class="card-title">CREW AVAILABILITY</span></div>
+            <div class="card-body" style="padding:0.4rem 1.25rem" id="dashCrewList">
+              <p style="color:var(--gray2);font-size:.82rem;padding:.5rem 0">Loading…</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">THIS MONTH</span></div>
+            <div class="card-body">
+              <div style="margin-bottom:0.7rem"><div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--gray);margin-bottom:3px"><span>Bookings Completed</span><span>8/12</span></div><div class="equip-status-bar"><div class="equip-status-fill" style="width:66%;background:var(--green)"></div></div></div>
+              <div style="margin-bottom:0.7rem"><div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--gray);margin-bottom:3px"><span>Payments Collected</span><span>₱126K/₱148K</span></div><div class="equip-status-bar"><div class="equip-status-fill" style="width:85%;background:var(--blue)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--gray);margin-bottom:3px"><span>Crew Utilization</span><span>5/7</span></div><div class="equip-status-bar"><div class="equip-status-fill" style="width:71%;background:var(--yellow)"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="page" id="page-bookings">
+
+      <!-- ── Bookings top bar ── -->
+      <div class="bk-topbar">
+        <div class="bk-topbar-left">
+          <div class="page-header-left" style="margin:0"><h1 style="margin:0">BOOKINGS</h1></div>
+          <div class="bk-stat-pills">
+            <div class="bk-stat-pill">PENDING <span id="bkStatPending">—</span></div>
+            <div class="bk-stat-pill" style="color:var(--green)">CONFIRMED <span id="bkStatConfirmed">—</span></div>
+            <div class="bk-stat-pill" style="color:#e8180c">TOTAL <span id="bkStatTotal">—</span></div>
+          </div>
+        </div>
+        <button class="btn btn-red" onclick="openModal('modalAddBooking')">+ Add Booking</button>
+      </div>
+
+      <!-- ── Search + filter toolbar ── -->
+      <div class="bk-toolbar">
+        <div class="bk-search-wrap">
+          <svg class="bk-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input class="bk-search-input" id="bookingSearchInput" placeholder="Search client, package, venue, ref…" oninput="filterBookings(this.value)"/>
+        </div>
+        <div class="bk-filter-tabs">
+          <button class="bk-ftab active" data-status="all"          onclick="setBkFilter('all',this)">ALL</button>
+          <button class="bk-ftab"        data-status="pending"      onclick="setBkFilter('pending',this)">PENDING</button>
+          <button class="bk-ftab"        data-status="confirmed"    onclick="setBkFilter('confirmed',this)">CONFIRMED</button>
+          <button class="bk-ftab"        data-status="deposit paid" onclick="setBkFilter('deposit paid',this)">DEPOSIT</button>
+          <button class="bk-ftab"        data-status="completed"    onclick="setBkFilter('completed',this)">DONE</button>
+          <button class="bk-ftab"        data-status="cancelled"    onclick="setBkFilter('cancelled',this)">CANCELLED</button>
+        </div>
+      </div>
+
+      <!-- ── Table ── -->
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="tbl-wrap"><table id="tblBookings" style="min-width:860px">
+          <thead>
+            <tr>
+              <th style="width:110px">ORDER #</th>
+              <th>CLIENT</th>
+              <th>PACKAGE / EVENT</th>
+              <th style="width:110px">DATE</th>
+              <th style="width:130px">VENUE</th>
+              <th style="width:110px">AMOUNT</th>
+              <th style="width:120px">STATUS</th>
+              <th style="width:130px">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="8" style="text-align:center;color:var(--gray2);padding:2.5rem;font-family:var(--font-m);font-size:.72rem;letter-spacing:.12em">LOADING BOOKINGS…</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- CLIENTS -->
+    <div class="page" id="page-clients">
+      <div class="page-header"><div class="page-header-left"><h1>CLIENTS</h1><p>All registered clients and their booking history.</p></div><button class="btn btn-red" onclick="openModal('modalAddClient')">+ Add Client</button></div>
+      <div class="search-bar-wrap"><label>Search</label><input class="search-input-big" placeholder="Client name, contact, location..." oninput="filterTable('tblClients',this.value)"/></div>
+      <div class="card">
+        <div class="tbl-wrap"><table id="tblClients">
+          <thead><tr><th>Client ID</th><th>Name</th><th>Phone</th><th>Email</th><th>Location</th><th>Bookings</th><th>Total Spent</th><th>Last Event</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td colspan="9" style="text-align:center;color:var(--gray2);padding:2rem;font-family:var(--font-m);font-size:0.75rem;letter-spacing:0.1em">LOADING CLIENTS...</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- PACKAGES -->
+    <div class="page" id="page-packages">
+      <div class="page-header"><div class="page-header-left"><h1>PACKAGES</h1><p>Manage service packages and pricing. Price changes apply to new bookings only — past bookings are preserved.</p></div>
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <button class="btn btn-ghost" onclick="openPriceHistory()">📋 Price History</button>
+          <button class="btn btn-red" onclick="openModal('modalAddPackage')">+ Add Package</button>
+        </div>
+      </div>
+      <div class="search-bar-wrap"><label>Search</label><input class="search-input-big" placeholder="Package name, ID, or category..." oninput="filterTable('tblPackages',this.value)"/></div>
+      <div class="card">
+        <div class="tbl-wrap"><table id="tblPackages">
+          <thead><tr><th>Package ID</th><th>Name</th><th>Description</th><th>Current Price</th><th>Inclusions</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="pkgTbody">
+            <tr><td colspan="7" style="text-align:center;color:var(--gray2);padding:2rem;font-family:var(--font-m);font-size:.75rem;letter-spacing:.1em">LOADING PACKAGES…</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="page" id="page-crew">
+      <div class="page-header">
+        <div class="page-header-left"><h1>CREW MANAGEMENT</h1><p>Manage your team, roles, and availability.</p></div>
+        <div style="display:flex;gap:0.6rem;align-items:center">
+          <div class="view-toggle">
+            <button class="view-btn active" id="btnCardView" onclick="setCrewView('card')">⊞ Cards</button>
+            <button class="view-btn" id="btnTableView" onclick="setCrewView('table')">☰ Table</button>
+          </div>
+          <button class="btn btn-red" onclick="openAddCrewModal()">+ Add Member</button>
+        </div>
+      </div>
+      <div class="search-bar-wrap"><label>Search</label><input class="search-input-big" placeholder="Name, role, specialization..." oninput="filterCrewCards(this.value);filterTable('tblCrew',this.value)"/></div>
+
+      <div class="crew-grid" id="crewGrid">
+        <div style="grid-column:1/-1;text-align:center;color:var(--gray2);padding:3rem;font-family:var(--font-m);font-size:.75rem;letter-spacing:.1em">LOADING CREW…</div>
+      </div>
+
+      <div id="crewTableWrap" style="display:none">
+        <div class="card"><div class="tbl-wrap"><table id="tblCrew">
+          <thead><tr><th>Name</th><th>Role</th><th>Specialization</th><th>Contact</th><th>Events Done</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td colspan="7" style="text-align:center;color:var(--gray2);padding:2rem;font-family:var(--font-m);font-size:.75rem;letter-spacing:.1em">LOADING CREW…</td></tr>
+          </tbody>
+        </table></div></div>
+      </div>
+    </div>
+
+    <!-- FINANCE -->
+    <div class="page" id="page-finance">
+      <div class="page-header">
+        <div class="page-header-left"><h1>FINANCIAL REPORTS</h1><p>Revenue, collections, payment tracking, and logged expenses.</p></div>
+        <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+          <div style="display:flex;gap:.4rem;align-items:center">
+            <button type="button" class="ma-cal-trigger pill" id="finRangeTrigger">
+              <span class="ma-cal-trigger-text" id="finRangeText">This Year</span>
+              <svg class="ma-cal-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>
+              </svg>
+            </button>
+            <span id="finYearNav" style="display:flex;gap:.3rem;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.35rem .4rem">
+              <button onclick="finChangeYear(-1)" title="Previous year" class="ma-cal-nav" style="background:var(--bg3);border:1px solid var(--border);color:var(--gray);width:24px;height:24px;border-radius:4px;cursor:pointer;font-size:.75rem">‹</button>
+              <span id="finYearLabel" style="font-family:var(--font-m);font-size:.68rem;color:var(--white);min-width:32px;text-align:center;display:inline-block">2026</span>
+              <button onclick="finChangeYear(1)" title="Next year" class="ma-cal-nav" style="background:var(--bg3);border:1px solid var(--border);color:var(--gray);width:24px;height:24px;border-radius:4px;cursor:pointer;font-size:.75rem">›</button>
+            </span>
+          </div>
+          <button class="btn btn-ghost" onclick="openPriceHistory()">📋 Price History</button>
+          <button class="btn btn-red" onclick="openLogExpenseModal()">+ Log Expense</button>
+          <button class="btn btn-ghost" onclick="exportFinancePDF()">Export PDF</button>
+        </div>
+      </div>
+
+      <!-- Detailed report filters -->
+      <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1.1rem">
+        <span style="font-family:var(--font-m);font-size:.58rem;letter-spacing:.14em;color:var(--gray2)">FILTERS:</span>
+        <select id="finFilterEventType" onchange="finApplyFilters()" style="background:var(--bg2);border:1px solid var(--border);color:var(--white);font-family:var(--font-b);font-size:.78rem;padding:.4rem .6rem;border-radius:6px;cursor:pointer">
+          <option value="">All Event Types</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Fiesta">Fiesta</option>
+          <option value="Festival">Festival</option>
+          <option value="DJ Battle">DJ Battle</option>
+          <option value="Corporate">Corporate</option>
+          <option value="Other">Other</option>
+        </select>
+        <select id="finFilterStatus" onchange="finApplyFilters()" style="background:var(--bg2);border:1px solid var(--border);color:var(--white);font-family:var(--font-b);font-size:.78rem;padding:.4rem .6rem;border-radius:6px;cursor:pointer">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="deposit paid">Deposit Paid</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <select id="finFilterPkg" onchange="finApplyFilters()" style="background:var(--bg2);border:1px solid var(--border);color:var(--white);font-family:var(--font-b);font-size:.78rem;padding:.4rem .6rem;border-radius:6px;cursor:pointer">
+          <option value="">All Packages</option>
+        </select>
+        <button class="btn btn-ghost" id="finFilterClearBtn" onclick="finClearFilters()" style="display:none;font-size:.7rem;padding:.4rem .7rem">✕ Clear filters</button>
+        <span id="finFilterSummary" style="font-family:var(--font-m);font-size:.6rem;color:var(--gray2)"></span>
+      </div>
+
+      <!-- Stat cards — clickable, highlight + sub-filter -->
+      <div class="stat-grid">
+        <div class="stat-card fin-stat-card" data-fin-card="revenue" style="--accent:#22c55e"
+             role="button" tabindex="0"
+             onclick="selectFinCard('revenue')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectFinCard('revenue')}">
+          <div class="stat-label">Gross Revenue</div>
+          <div class="stat-val" id="finRevenue">—</div>
+          <div class="stat-sub" id="finRevSub">Loading...</div>
+          <div class="stat-icon-svg"><i data-lucide="trending-up" style="width:22px;height:22px;color:#22c55e;opacity:.8"></i></div>
+        </div>
+
+        <div class="stat-card fin-stat-card" data-fin-card="collected" style="--accent:#3b82f6"
+             role="button" tabindex="0"
+             onclick="selectFinCard('collected')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectFinCard('collected')}">
+          <div class="stat-label">Collected</div>
+          <div class="stat-val" id="finCollected">—</div>
+          <div class="stat-sub" id="finCollSub">Loading...</div>
+          <div class="stat-icon-svg"><i data-lucide="circle-check" style="width:22px;height:22px;color:#3b82f6;opacity:.8"></i></div>
+        </div>
+
+        <div class="stat-card fin-stat-card" data-fin-card="outstanding" style="--accent:#eab308"
+             role="button" tabindex="0"
+             onclick="selectFinCard('outstanding')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectFinCard('outstanding')}">
+          <div class="stat-label">Balance</div>
+          <div class="stat-val" id="finOutstanding">—</div>
+          <div class="stat-sub" id="finOutSub">Loading...</div>
+          <div class="stat-icon-svg"><i data-lucide="clock-alert" style="width:22px;height:22px;color:#eab308;opacity:.8"></i></div>
+        </div>
+
+        <div class="stat-card fin-stat-card" data-fin-card="expenses" style="--accent:#e8180c"
+             role="button" tabindex="0"
+             onclick="selectFinCard('expenses')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectFinCard('expenses')}">
+          <div class="stat-label">Total Expenses</div>
+          <div class="stat-val" id="finExpenses">—</div>
+          <div class="stat-sub" id="finExpSub">Loading...</div>
+          <div class="stat-icon-svg"><i data-lucide="receipt" style="width:22px;height:22px;color:#e8180c;opacity:.8"></i></div>
+        </div>
+      </div>
+
+      <!-- Net Profit Banner -->
+      <div style="margin-bottom:1.25rem;padding:1rem 1.5rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <div>
+          <div style="font-family:var(--font-m);font-size:.55rem;letter-spacing:.2em;color:var(--gray2)">NET PROFIT (COLLECTED − EXPENSES)</div>
+          <div style="font-family:var(--font-d);font-size:2rem;font-weight:700;color:#22c55e;margin-top:2px" id="finNetProfit">—</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--font-m);font-size:.55rem;letter-spacing:.2em;color:var(--gray2)">EXPENSE RATIO</div>
+          <div style="font-family:var(--font-d);font-size:1.5rem;font-weight:700;color:#eab308;margin-top:2px" id="finExpRatio">—</div>
+          <div style="font-family:var(--font-m);font-size:.55rem;color:var(--gray2);margin-top:2px">of collected revenue</div>
+        </div>
+      </div>
+
+      <!-- Monthly Chart -->
+      <div class="card" style="margin-bottom:1.25rem">
+        <div class="card-header">
+          <span class="card-title">REVENUE VS EXPENSES — <span id="finChartLabel">2026</span></span>
+        </div>
+        <div class="card-body">
+          <div style="display:flex;gap:.3rem;align-items:flex-end;height:160px;padding:0 .25rem" id="finChart">
+            <div style="color:var(--gray2);font-family:var(--font-m);font-size:.65rem;width:100%;text-align:center">Loading chart...</div>
+          </div>
+          <div style="display:flex;gap:1.5rem;justify-content:center;margin-top:.75rem;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:.35rem;font-family:var(--font-m);font-size:.6rem;color:var(--gray)"><span style="width:12px;height:10px;border-radius:2px;background:rgba(232,24,12,.5);display:inline-block"></span>Revenue</span>
+            <span style="display:flex;align-items:center;gap:.35rem;font-family:var(--font-m);font-size:.6rem;color:var(--gray)"><span style="width:12px;height:10px;border-radius:2px;background:rgba(234,179,8,.5);display:inline-block"></span>Expenses</span>
+            <span style="display:flex;align-items:center;gap:.35rem;font-family:var(--font-m);font-size:.6rem;color:var(--gray)"><span style="width:12px;height:10px;border-radius:2px;background:rgba(34,197,94,.5);display:inline-block"></span>Net Profit</span>
+          </div>
+        </div>
+      </div>
+
+            <!-- Payment Records -->
+      <div class="card" style="margin-bottom:1.25rem">
+        <div class="card-header"><span class="card-title">PAYMENT RECORDS</span></div>
+        <div class="tbl-wrap"><table id="tblPayments">
+          <thead><tr><th>Booking</th><th>Client</th><th>Event Type</th><th>Event Date</th><th>Total</th><th>Paid</th><th>Balance</th><th>Expenses</th><th>Net</th><th>Method</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody><tr><td colspan="12" style="text-align:center;color:var(--gray2);padding:1.5rem;font-family:var(--font-m);font-size:.72rem">Loading...</td></tr></tbody>
+        </table></div>
+      </div>
+
+      <!-- Expense Ledger -->
+      <div class="stat-grid" style="margin-bottom:1.25rem">
+        <div class="stat-card" style="--accent:#e8180c"><div class="stat-label">Expenses — This Month</div><div class="stat-val" id="expThisMonth">—</div><div class="stat-sub">Current calendar month</div><div class="stat-icon-svg"><i data-lucide="arrow-down-right" style="width:22px;height:22px;color:#e8180c;opacity:.8"></i></div></div>
+        <div class="stat-card" style="--accent:#eab308"><div class="stat-label">Expenses — All-Time</div><div class="stat-val" id="expAllTime">—</div><div class="stat-sub">All logged expenses</div><div class="stat-icon-svg"><i data-lucide="receipt" style="width:22px;height:22px;color:#e8180c;opacity:.8"></i></div></div>
+        <div class="stat-card" style="--accent:#22c55e"><div class="stat-label">This Month Net</div><div class="stat-val" id="expNetProfit">—</div><div class="stat-sub">This month's revenue minus expenses</div><div class="stat-icon-svg"><i data-lucide="wallet" style="width:22px;height:22px;color:#22c55e;opacity:.8"></i></div></div>
+      </div>
+
+      <div class="card" id="finExpenseLedgerCard">
+        <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+          <span class="card-title">EXPENSE LEDGER</span>
+          <div style="display:flex;gap:.5rem;align-items:center">
+            <button class="btn btn-ghost" onclick="previewExpensesPDF()" style="font-size:.7rem;padding:.4rem .8rem">👁 Preview &amp; Print</button>
+            <button class="btn btn-ghost" onclick="exportExpensesPDF()" style="font-size:.7rem;padding:.4rem .8rem">Export PDF</button>
+            <button class="btn btn-red" onclick="openLogExpenseModal()" style="font-size:.7rem;padding:.4rem .8rem">+ Log Expense</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;padding:0 1.25rem 1rem">
+          <span style="font-family:var(--font-m);font-size:.58rem;letter-spacing:.14em;color:var(--gray2)">FILTERS:</span>
+          <select id="expFilterCategory" onchange="expApplyFilters()" style="background:var(--bg2);border:1px solid var(--border);color:var(--white);font-family:var(--font-b);font-size:.78rem;padding:.4rem .6rem;border-radius:6px;cursor:pointer">
+            <option value="">All Categories</option>
+            <option>Fuel</option>
+            <option>Repair</option>
+            <option>Consumables</option>
+            <option>Crew Pay</option>
+            <option>Food</option>
+            <option>Miscellaneous</option>
+          </select>
+          <input type="date" id="expFilterFrom" onchange="expApplyFilters()" title="From date" style="display:none"/>
+          <input type="date" id="expFilterTo" onchange="expApplyFilters()" title="To date" style="display:none"/>
+          <button type="button" class="ma-cal-trigger pill" id="expRangeTrigger">
+            <span class="ma-cal-trigger-text placeholder" id="expRangeText">All Time</span>
+            <svg class="ma-cal-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>
+            </svg>
+          </button>
+          <input type="text" id="expFilterSearch" oninput="expApplyFilters()" placeholder="Search description / logged by…" style="background:var(--bg2);border:1px solid var(--border);color:var(--white);font-family:var(--font-b);font-size:.78rem;padding:.4rem .6rem;border-radius:6px;min-width:200px;flex:1"/>
+          <button class="btn btn-ghost" id="expFilterClearBtn" onclick="expClearFilters()" style="display:none;font-size:.7rem;padding:.4rem .7rem">✕ Clear filters</button>
+          <span id="expFilterSummary" style="font-family:var(--font-m);font-size:.6rem;color:var(--gray2);width:100%"></span>
+        </div>
+        <div class="tbl-wrap"><table id="tblExpenses">
+          <thead><tr><th>Expense ID</th><th>Category</th><th>Description</th><th>Amount</th><th>Date</th><th>Logged By</th><th>Actions</th></tr></thead>
+          <tbody><tr><td colspan="7" style="text-align:center;color:var(--gray2);padding:2rem;font-family:var(--font-m);font-size:.75rem;letter-spacing:.1em">LOADING EXPENSES...</td></tr></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="page" id="page-settings">
+      <div class="page-header">
+        <div class="page-header-left"><h1>SETTINGS</h1><p>System configuration and homepage content management.</p></div>
+      </div>
+
+      <div class="card" style="margin-bottom:1.5rem">
+        <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+          <span class="card-title">HOMEPAGE STATS</span>
+          <span style="font-family:var(--font-m);font-size:.58rem;letter-spacing:.12em;color:var(--gray2)">Updates live on the public website</span>
+        </div>
+        <div class="card-body">
+          <div style="font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;color:var(--gray2);margin-bottom:1rem;padding:.6rem .85rem;background:rgba(232,24,12,.07);border:1px solid rgba(232,24,12,.2);border-radius:6px">
+            ⚠ Facebook does not allow external apps to read follower counts without an approved Business App. Update the Followers number manually whenever you check your page.
+          </div>
+          <div class="form-grid" style="gap:1rem;grid-template-columns:repeat(3,1fr)">
+            <div class="form-group">
+              <label>YEARS IN BUSINESS</label>
+              <input id="statYears" type="text" value="19+" placeholder="e.g. 19+"/>
+              <span style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2);margin-top:.3rem;display:block">Shown as "X+ Years"</span>
+            </div>
+            <div class="form-group">
+              <label>EVENTS HANDLED</label>
+              <input id="statEvents" type="text" value="1K+" placeholder="e.g. 1K+"/>
+              <span style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2);margin-top:.3rem;display:block">Shown as "XK+ Events"</span>
+            </div>
+            <div class="form-group">
+              <label>FACEBOOK FOLLOWERS</label>
+              <div style="display:flex;gap:.5rem;align-items:center">
+                <input id="statFollowers" type="text" value="53K" placeholder="e.g. 53K" style="flex:1"/>
+                <a href="https://www.facebook.com/maudioprosoundo/followers" target="_blank" rel="noopener"
+                   style="font-family:var(--font-m);font-size:.55rem;letter-spacing:.08em;color:var(--red);white-space:nowrap;text-decoration:none;padding:.4rem .6rem;border:1px solid rgba(232,24,12,.3);border-radius:5px;transition:all .2s"
+                   onmouseover="this.style.background='rgba(232,24,12,.1)'" onmouseout="this.style.background=''">
+                  CHECK FB
+                </a>
+              </div>
+              <span style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2);margin-top:.3rem;display:block">Update manually from your FB page</span>
+            </div>
+          </div>
+          <div style="margin-top:1.25rem;display:flex;gap:.75rem;align-items:center">
+            <button class="btn btn-red" onclick="saveHomepageStats()">💾 SAVE &amp; PUBLISH</button>
+            <span id="statsStatus" style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--gray2)"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div>
+          <div class="card" style="margin-bottom:1.25rem">
+            <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+              <span class="card-title">BUSINESS INFORMATION</span>
+              <span id="bizInfoStatus" style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2)"></span>
+            </div>
+            <div class="card-body">
+              <div class="form-grid" style="gap:1rem">
+                <div class="form-group"><label>Business Name</label><input id="bizName" value="M-Audio Pro Sound"/></div>
+                <div class="form-group"><label>Contact Number</label><input id="bizPhone" value="0930 261 7168"/></div>
+                <div class="form-group form-span-2"><label>Address</label><input id="bizAddress" value="Poblacion, Corella, Bohol, Philippines"/></div>
+                <div class="form-group"><label>Facebook URL</label><input id="bizFb" value="facebook.com/maudioprosoundo"/></div>
+                <div class="form-group"><label>Email (Optional)</label><input id="bizEmail" placeholder="email@example.com"/></div>
+              </div>
+              <div style="margin-top:1rem"><button class="btn btn-red" onclick="saveBusinessInfo()">💾 Save Changes</button></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+              <span class="card-title">BOOKING PREFERENCES</span>
+              <span id="bookPrefsStatus" style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2)"></span>
+            </div>
+            <div class="card-body">
+              <div class="form-grid" style="gap:1rem">
+                <div class="form-group"><label>Downpayment (%)</label><input id="prefDownpay" value="50" type="number"/></div>
+                <div class="form-group"><label>Currency</label><select id="prefCurrency"><option>PHP (₱)</option></select></div>
+                <div class="form-group form-span-2"><label>Default Booking Note</label><textarea id="prefNote" rows="2">Thank you for booking M-Audio Pro Sound!</textarea></div>
+              </div>
+              <div style="margin-top:1rem"><button class="btn btn-red" onclick="saveBookingPrefs()">💾 Save Changes</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+            <span class="card-title">ADMIN ACCOUNT</span>
+            <span id="adminAcctStatus" style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2)"></span>
+          </div>
+          <div class="card-body">
+            <div class="form-grid full" style="gap:0.9rem">
+              <div class="form-group"><label>Admin Name</label><input id="acctName" value="System Administrator"/></div>
+              <div class="form-group"><label>Username</label><input id="acctUsername" type="email" value="admin" title="Sign-in email — changing this requires confirming a verification link Supabase sends you"/></div>
+              <div class="form-group"><label>New Password</label><input id="acctNewPass" type="password" placeholder="Leave blank to keep"/></div>
+              <div class="form-group"><label>Confirm Password</label><input id="acctConfirmPass" type="password" placeholder="Confirm new password"/></div>
+            </div>
+            <div style="margin-top:1rem"><button class="btn btn-red" onclick="updateAdminAccount()">Update Account</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT US CMS -->
+    <div class="page" id="page-aboutus">
+      <div class="page-header">
+        <div class="page-header-left"><h1>ABOUT US</h1><p>Manage the story, team, and gallery/videos shown in the homepage About Us section.</p></div>
+      </div>
+
+      <div class="card" style="margin-bottom:1.5rem">
+        <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+          <span class="card-title">OUR STORY</span>
+          <span id="aboutStoryStatus" style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2)"></span>
+        </div>
+        <div class="card-body">
+          <div class="form-grid" style="gap:1rem">
+            <div class="form-group form-span-2"><label>Story — Paragraph 1</label><textarea id="aboutStoryP1" rows="3" placeholder="Founding story..."></textarea></div>
+            <div class="form-group form-span-2"><label>Story — Paragraph 2</label><textarea id="aboutStoryP2" rows="3" placeholder="What you do today..."></textarea></div>
+          </div>
+          <span style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2);margin-top:.3rem;display:block">Basic HTML like &lt;strong&gt; is fine — it's inserted as-is.</span>
+          <div style="margin-top:1rem"><button class="btn btn-red" onclick="saveAboutStory()">💾 Save &amp; Publish</button></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1.5rem">
+        <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+          <span class="card-title">TEAM MEMBERS</span>
+          <button class="btn btn-red" onclick="openAddTeamMemberModal()">+ Add Team Member</button>
+        </div>
+        <div class="card-body">
+          <div class="crew-grid" id="teamMembersGrid">
+            <div style="grid-column:1/-1;text-align:center;color:var(--gray2);padding:2rem;font-family:var(--font-m);font-size:.75rem">LOADING…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">
+          <span class="card-title">GALLERY &amp; VIDEOS</span>
+          <div style="display:flex;gap:.5rem">
+            <button class="btn btn-ghost" onclick="openAddGalleryModal('photo')">+ Add Photo</button>
+            <button class="btn btn-ghost" onclick="openAddGalleryModal('video')">+ Add Video</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="crew-grid" id="aboutGalleryGrid">
+            <div style="grid-column:1/-1;text-align:center;color:var(--gray2);padding:2rem;font-family:var(--font-m);font-size:.75rem">LOADING…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CALENDAR -->
+    <div class="page" id="page-calendar">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>BOOKING CALENDAR</h1>
+          <p>Click any date to view or manage bookings for that day.</p>
+        </div>
+        <button class="btn btn-red" onclick="openModal('modalAddBooking')">+ Add Booking</button>
+      </div>
+
+      <div class="ac-layout">
+
+        <div class="ac-main">
+          <div class="ac-nav">
+            <button class="ac-arrow" id="admCalPrev">&#8592;</button>
+            <div class="ac-month-label">
+              <span class="ac-month-name" id="admCalTitle">Loading…</span>
+            </div>
+            <button class="ac-arrow" id="admCalNext">&#8594;</button>
+            <div class="ac-legend">
+              <span class="acl-item"><span class="acl-dot confirmed"></span>Confirmed</span>
+              <span class="acl-item"><span class="acl-dot pending"></span>Pending</span>
+              <span class="acl-item"><span class="acl-dot today-dot"></span>Today</span>
+              <span class="acl-item" style="font-family:var(--font-m);font-size:.55rem;letter-spacing:.08em"><span style="color:#22c55e;margin-right:.25rem">●</span>Avail</span>
+              <span class="acl-item" style="font-family:var(--font-m);font-size:.55rem;letter-spacing:.08em"><span style="color:#eab308;margin-right:.25rem">●</span>Partial</span>
+              <span class="acl-item" style="font-family:var(--font-m);font-size:.55rem;letter-spacing:.08em"><span style="color:#f87171;margin-right:.25rem">●</span>Full</span>
+            </div>
+          </div>
+          <div class="ac-dow-row">
+            <div class="ac-dow">Sun</div>
+            <div class="ac-dow">Mon</div>
+            <div class="ac-dow">Tue</div>
+            <div class="ac-dow">Wed</div>
+            <div class="ac-dow">Thu</div>
+            <div class="ac-dow">Fri</div>
+            <div class="ac-dow">Sat</div>
+          </div>
+          <div class="ac-grid" id="admCalDays"></div>
+        </div>
+
+        <div class="ac-side">
+          <div class="ac-panel" id="admDayCard">
+            <div class="ac-panel-head">
+              <span class="ac-panel-title" id="admDayTitle">SELECT A DATE</span>
+            </div>
+            <div class="ac-panel-body" id="admDayBody">
+              <p class="ac-empty-msg">Click any date to see its bookings.</p>
+            </div>
+          </div>
+          <div class="ac-panel">
+            <div class="ac-panel-head">
+              <span class="ac-panel-title">Upcoming Events</span>
+            </div>
+            <div class="ac-upcoming-list" id="admUpcoming">
+              <p class="ac-empty-msg" style="padding:1rem">Loading…</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modalAddBooking"><div class="modal"><div class="modal-header"><span class="modal-title">+ ADD BOOKING</span><button class="modal-close" onclick="closeModal('modalAddBooking')">✕</button></div><div class="modal-body"><div class="form-grid"><div class="form-group"><label>Client Name</label><input id="mb-name" placeholder="Full name"/></div><div class="form-group"><label>Contact</label><input id="mb-contact" placeholder="09xx-xxx-xxxx"/></div><div class="form-group"><label>Event Type</label><select id="mb-eventType"><option>Wedding</option><option>Birthday</option><option>Fiesta</option><option>Festival</option><option>DJ Battle</option><option>Corporate</option><option>Other</option></select></div><div class="form-group"><label>Package</label><select id="mb-pkg"><option>Regular Package</option><option>Disco Package</option><option>Wedding Package</option><option>Battle Unit</option><option>Custom</option></select></div><div class="form-group form-span-2"><label>Event Name / Description</label><input id="mb-eventName" placeholder="e.g. Santos Wedding Reception"/></div><div class="form-group"><label>Event Date</label><input id="mb-date" type="date"/></div><div class="form-group"><label>Event Time</label><input id="mb-time" type="time"/></div><div class="form-group form-span-2"><label>Location / Venue</label><input id="mb-venue" placeholder="Full address"/></div><div class="form-group"><label>Total Amount (₱)</label><input id="mb-total" type="number" placeholder="0"/></div><div class="form-group"><label>Downpayment (₱)</label><input id="mb-down" type="number" placeholder="0"/></div><div class="form-group form-span-2"><label>Notes</label><textarea id="mb-notes" rows="2" placeholder="Special requests..."></textarea></div></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modalAddBooking')">Cancel</button><button class="btn btn-red" onclick="saveAndClose('modalAddBooking','Booking added!')">Save Booking</button></div></div></div>
+
+<div class="modal-overlay" id="modalAddCrew"><div class="modal" style="max-width:520px"><div class="modal-header"><span class="modal-title" id="crewModalTitle">+ ADD CREW MEMBER</span><button class="modal-close" onclick="closeModal('modalAddCrew')">✕</button></div><div class="modal-body">
+  <div style="display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:1rem">
+    <div id="cmPhotoPreview" style="width:100px;height:100px;flex-shrink:0;border-radius:8px;background:var(--bg3);border:2px dashed var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center top;overflow:hidden;transition:border-color .2s" title="Click to upload photo" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='var(--border2)'">
+      <div class="cm-photo-inner" style="display:flex;flex-direction:column;align-items:center;gap:.3rem;pointer-events:none"><span style="font-size:2rem">👤</span><span style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;color:var(--gray2);margin-top:.3rem">CLICK TO UPLOAD</span></div>
+    </div>
+    <div style="flex:1">
+      <div class="form-group" style="margin-bottom:.75rem"><label>Full Name <span style="color:var(--red)">*</span></label><input id="cm-name" placeholder="Full name"/></div>
+      <div class="form-group"><label>Contact Number</label><input id="cm-phone" placeholder="09xx-xxx-xxxx"/></div>
+      <div class="form-group"><label>Email (optional)</label><input id="cm-email" type="email" placeholder="email@address.com"/></div>
+    </div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group"><label>Role</label><select id="cm-role" onchange="onCrewRoleChange(this.value)"><option>Owner</option><option>Manager</option><option>Team Leader</option><option>DJ</option><option>Sound Technician</option><option>Lights Specialist</option><option>Led Wall Technician</option><option>Driver</option><option>Crew</option></select></div>
+    <div class="form-group"><label>Specialization</label><input id="cm-spec" placeholder="e.g. Sound Engineering"/></div>
+    <div class="form-group" id="cm-rate-wrap"><label id="cm-rate-lbl">Daily Rate (₱)</label><input id="cm-rate" type="number" placeholder="0"/></div>
+    <div class="form-group"><label>Events Done</label><input id="cm-events" type="number" placeholder="0" value="0"/></div>
+    <div class="form-group" id="cm-salary-wrap" style="display:none"><label>Monthly Salary (₱)</label><input id="cm-salary" type="number" placeholder="0"/></div>
+    <div class="form-group"><label>Status</label><select id="cm-status"><option>Available</option><option>On Duty</option><option>Day Off</option><option>Standby</option></select></div>
+    <div class="form-group form-span-2"><label>Notes / Skills</label><textarea id="cm-notes" rows="2" placeholder="Skills, availability notes..."></textarea></div>
+  </div>
+</div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modalAddCrew')">Cancel</button><button class="btn btn-red" id="crewSaveBtn" onclick="saveCrewMemberFromModal()">Save Member</button></div></div></div>
+
+<div class="modal-overlay" id="modalTeamMember"><div class="modal" style="max-width:520px"><div class="modal-header"><span class="modal-title" id="tmModalTitle">+ ADD TEAM MEMBER</span><button class="modal-close" onclick="closeModal('modalTeamMember')">✕</button></div><div class="modal-body">
+  <div style="display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:1rem">
+    <div id="tmPhotoPreview" style="width:100px;height:100px;flex-shrink:0;border-radius:8px;background:var(--bg3);border:2px dashed var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center top;overflow:hidden;transition:border-color .2s" title="Click to upload photo" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='var(--border2)'">
+      <div class="tm-photo-inner" style="display:flex;flex-direction:column;align-items:center;gap:.3rem;pointer-events:none"><span style="font-size:2rem">👤</span><span style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;color:var(--gray2);margin-top:.3rem">CLICK TO UPLOAD</span></div>
+    </div>
+    <div style="flex:1">
+      <div class="form-group" style="margin-bottom:.75rem"><label>Full Name <span style="color:var(--red)">*</span></label><input id="tm-name" placeholder="Full name"/></div>
+      <div class="form-group"><label>Role / Title <span style="color:var(--red)">*</span></label><input id="tm-role" placeholder="e.g. Founder &amp; Owner"/></div>
+    </div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group form-span-2"><label>Description</label><textarea id="tm-desc" rows="3" placeholder="What they do at M-Audio Pro Sound..."></textarea></div>
+    <div class="form-group form-span-2"><label>Badge (optional)</label><input id="tm-badge" placeholder="e.g. 🎙 20 Years Experience"/></div>
+  </div>
+</div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modalTeamMember')">Cancel</button><button class="btn btn-red" onclick="saveTeamMemberFromModal()">Save Member</button></div></div></div>
+
+<div class="modal-overlay" id="modalGalleryItem"><div class="modal" style="max-width:560px"><div class="modal-header"><span class="modal-title" id="giModalTitle">+ ADD PHOTOS</span><button class="modal-close" onclick="closeModal('modalGalleryItem')">✕</button></div><div class="modal-body">
+  <input type="hidden" id="gi-type" value="photo"/>
+
+  <div class="form-group" id="giPhotoField">
+    <label>Photos <span style="color:var(--red)">*</span></label>
+    <div id="giPhotoPicker" style="width:100%;min-height:110px;border-radius:8px;background:var(--bg3);border:2px dashed var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s" title="Click to select photos" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='var(--border2)'">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.3rem;pointer-events:none"><span style="font-size:1.6rem">🖼</span><span style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;color:var(--gray2);text-align:center">CLICK TO SELECT PHOTOS<br/>(select several at once — ctrl/cmd-click or shift-click)</span></div>
+    </div>
+  </div>
+
+  <div class="form-group" id="giVideoField" style="display:none">
+    <label>Videos <span style="color:var(--red)">*</span></label>
+    <div id="giVideoPicker" style="width:100%;min-height:110px;border-radius:8px;background:var(--bg3);border:2px dashed var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s" title="Click to select videos" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='var(--border2)'">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.3rem;pointer-events:none"><span style="font-size:1.6rem">🎬</span><span style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;color:var(--gray2);text-align:center">CLICK TO SELECT VIDEOS<br/>(select several at once — ctrl/cmd-click or shift-click)</span></div>
+    </div>
+    <span style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2);margin-top:.3rem;display:block">
+      Each file uploads to storage automatically and queues below — label everything, then save once. Large files take a moment; wait for "Uploaded" before saving.
+    </span>
+    <div style="display:flex;align-items:center;gap:.5rem;margin-top:.6rem">
+      <span style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2)">OR PASTE A DIRECT LINK:</span>
+      <input id="gi-videourl" placeholder="https://.../clip.mp4" style="flex:1"/>
+      <button class="btn btn-ghost" type="button" onclick="addVideoUrlToStaging()">+ Queue</button>
+    </div>
+  </div>
+
+  <div id="giStagingWrap" style="display:none;margin-top:1rem">
+    <label style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--gray2);display:block;margin-bottom:.5rem">READY TO ADD (<span id="giStagingCount">0</span>) — give each one a label</label>
+    <div id="giStagingList" style="display:flex;flex-direction:column;gap:.5rem;max-height:320px;overflow-y:auto"></div>
+  </div>
+
+</div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modalGalleryItem')">Cancel</button><button class="btn btn-red" id="giSaveBtn" onclick="saveGalleryItemFromModal()">Add to Gallery</button></div></div></div>
+
+<div class="modal-overlay" id="modalAddClient"><div class="modal"><div class="modal-header"><span class="modal-title">+ ADD CLIENT</span><button class="modal-close" onclick="closeModal('modalAddClient')">✕</button></div><div class="modal-body"><div class="form-grid"><div class="form-group"><label>Name / Organization</label><input id="mc-name" placeholder="Client name"/></div><div class="form-group"><label>Contact</label><input id="mc-contact" placeholder="09xx-xxx-xxxx"/></div><div class="form-group"><label>Email</label><input id="mc-email" type="email" placeholder="email@example.com"/></div><div class="form-group form-span-2"><label>Address</label><input id="mc-address" placeholder="Municipality, Bohol"/></div><div class="form-group form-span-2"><label>Notes</label><textarea id="mc-notes" rows="2" placeholder="Notes..."></textarea></div></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modalAddClient')">Cancel</button><button class="btn btn-red" onclick="saveAndClose('modalAddClient','Client added!')">Save Client</button></div></div></div>
+
+<div class="modal-overlay" id="modalAddPackage"><div class="modal"><div class="modal-header"><span class="modal-title">+ ADD PACKAGE</span><button class="modal-close" onclick="closeModal('modalAddPackage')">✕</button></div><div class="modal-body"><div class="form-grid"><div class="form-group form-span-2"><label>Package Name</label><input placeholder="Package name"/></div><div class="form-group"><label>Price (₱)</label><input type="number" placeholder="0"/></div><div class="form-group"><label>Status</label><select><option>Active</option><option>On Request</option><option>Inactive</option></select></div><div class="form-group form-span-2"><label>Description</label><input placeholder="Short description"/></div><div class="form-group form-span-2"><label>Inclusions</label><textarea rows="3" placeholder="What's included..."></textarea></div></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modalAddPackage')">Cancel</button><button class="btn btn-red" onclick="saveAndClose('modalAddPackage','Package added!')">Save Package</button></div></div></div>
+
+<div class="modal-overlay" id="modalAddExpense"><div class="modal"><div class="modal-header"><span class="modal-title">+ LOG EXPENSE</span><button class="modal-close" onclick="closeModal('modalAddExpense')">✕</button></div><div class="modal-body"><div class="form-grid"><div class="form-group"><label>Category <span style="color:var(--red)">*</span></label><select id="exp-category"><option value="">— Select —</option><option>Fuel</option><option>Repair</option><option>Consumables</option><option>Crew Pay</option><option>Food</option><option>Miscellaneous</option></select></div><div class="form-group"><label>Amount (₱) <span style="color:var(--red)">*</span></label><input id="exp-amount" type="number" placeholder="0" min="0"/></div><div class="form-group form-span-2"><label>Related Booking (optional)</label><select id="exp-booking"><option value="">— General / not tied to a specific booking —</option></select><span style="font-family:var(--font-m);font-size:.58rem;color:var(--gray2);margin-top:.3rem;display:block">Linking a booking deducts this cost from that booking's own net in Financial Reports, instead of only the overall total.</span></div><div class="form-group form-span-2"><label>Description</label><input id="exp-desc" placeholder="What was this for?"/></div><div class="form-group"><label>Date</label><input id="exp-date" type="date"/></div><div class="form-group"><label>Logged By</label><input id="exp-by" value="Admin" readonly title="Auto-filled from your signed-in account"/></div></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modalAddExpense')">Cancel</button><button class="btn btn-red" onclick="saveExpense()">Log Expense</button></div></div></div>
+
+<div class="modal-overlay" id="modalDelete"><div class="modal" style="max-width:380px"><div class="modal-header"><span class="modal-title" id="confirmModalTitle" style="color:#f87171">⚠ CONFIRM DELETE</span><button class="modal-close" onclick="closeModal('modalDelete')">✕</button></div><div class="modal-body"><p id="confirmModalMsg" style="font-size:0.9rem;color:var(--gray);line-height:1.7;white-space:pre-line">Are you sure you want to delete this record? This action <strong style="color:var(--white)">cannot be undone</strong>.</p></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modalDelete')">Cancel</button><button class="btn" id="confirmModalBtn" style="background:#c0150b;color:#fff" onclick="_runConfirmAction()">Yes, Delete</button></div></div></div>
+
+<div class="modal-overlay" id="modalBookingDetail">
+  <div class="modal" style="max-width:620px">
+    <div class="modal-header">
+      <span class="modal-title" id="bdModalTitle">BOOKING DETAIL</span>
+      <button class="modal-close" onclick="closeModal('modalBookingDetail')">✕</button>
+    </div>
+    <div class="modal-body" id="bdModalBody"></div>
+    <div class="modal-footer" id="bdModalFooter">
+      <button class="btn btn-ghost" onclick="closeModal('modalBookingDetail')">Close</button>
+    </div>
+    <div id="bdSlipContainer" style="padding:.6rem 1.25rem .9rem;border-top:1px solid rgba(255,255,255,.06)">
+      <button class="btn" id="bdDownloadBtn"
+        style="width:100%;background:linear-gradient(135deg,rgba(232,24,12,.15),rgba(232,24,12,.08));border:1px solid rgba(232,24,12,.35);color:var(--white);font-family:var(--font-m);font-size:.65rem;letter-spacing:.12em;padding:.65rem 1rem;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .2s"
+        onmouseover="this.style.background='linear-gradient(135deg,rgba(232,24,12,.28),rgba(232,24,12,.15))';this.style.borderColor='rgba(232,24,12,.6)'"
+        onmouseout="this.style.background='linear-gradient(135deg,rgba(232,24,12,.15),rgba(232,24,12,.08))';this.style.borderColor='rgba(232,24,12,.35)'"
+        onclick="downloadConfirmationImage()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        DOWNLOAD BOOKING CONFIRMATION SLIP
+      </button>
+
+      <div style="margin-top:.65rem;padding-top:.65rem;border-top:1px dashed rgba(255,255,255,.08)">
+        <label style="display:block;font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:#eab308;margin-bottom:.4rem">👔 WHAT TO WEAR (shown on Event & Crew slip)</label>
+        <input id="slipAttireInput" type="text" placeholder="e.g. All-black semi-formal, red accent optional"
+          style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.03);border:1px solid rgba(234,179,8,.25);color:var(--white);font-family:var(--font-b, Arial, sans-serif);font-size:.8rem;padding:.55rem .7rem;border-radius:6px;margin-bottom:.6rem;outline:none"
+          onfocus="this.style.borderColor='rgba(234,179,8,.6)'" onblur="this.style.borderColor='rgba(234,179,8,.25)'"/>
+        <button class="btn" id="bdEventSlipBtn"
+          style="width:100%;background:linear-gradient(135deg,rgba(234,179,8,.16),rgba(234,179,8,.06));border:1px solid rgba(234,179,8,.4);color:var(--white);font-family:var(--font-m);font-size:.65rem;letter-spacing:.12em;padding:.65rem 1rem;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .2s"
+          onmouseover="this.style.background='linear-gradient(135deg,rgba(234,179,8,.3),rgba(234,179,8,.12))';this.style.borderColor='rgba(234,179,8,.7)'"
+          onmouseout="this.style.background='linear-gradient(135deg,rgba(234,179,8,.16),rgba(234,179,8,.06))';this.style.borderColor='rgba(234,179,8,.4)'"
+          onclick="downloadEventCrewSlip()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          DOWNLOAD EVENT &amp; CREW SLIP
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Assign Crew Modal -->
+<div class="modal-overlay" id="modalAssignCrew">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <span class="modal-title">ASSIGN CREW TO EVENT</span>
+      <button class="modal-close" onclick="closeModal('modalAssignCrew')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom:.75rem;font-size:.82rem;color:var(--gray);line-height:1.5">
+        Select crew members and set their <strong style="color:var(--white)">daily rate for this event</strong>. Rates default to each member's base rate but can be adjusted per event. All selected crew pay is automatically logged to Expenses when the event is <strong style="color:#eab308">marked as done</strong>.
+      </div>
+      <div id="assignCrewList" style="max-height:320px;overflow-y:auto;border:1px solid var(--border);border-radius:6px;padding:.4rem"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modalAssignCrew')">Cancel</button>
+      <button class="btn btn-red" onclick="saveCrewAssignment()">Assign Crew</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ DOUBLE-CONFIRM MODAL ═══════════════ -->
+<div class="modal-overlay" id="modalConfirm">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-header">
+      <span class="modal-title" id="confirmTitle" style="color:#f87171">⚠ CONFIRM ACTION</span>
+      <button class="modal-close" onclick="closeModal('modalConfirm')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p id="confirmMessage" style="font-size:.85rem;color:var(--gray);line-height:1.7;margin-bottom:1.1rem"></p>
+      <div style="background:rgba(232,24,12,.06);border:1px solid rgba(232,24,12,.22);border-radius:7px;padding:.75rem .9rem">
+        <label style="font-family:var(--font-m);font-size:.55rem;letter-spacing:.16em;color:var(--gray2);display:block;margin-bottom:.45rem">
+          TYPE <strong id="confirmWordHint" style="color:#f87171">CONFIRM</strong> TO PROCEED
+        </label>
+        <input id="confirmWordInput" type="text" autocomplete="off" spellcheck="false"
+          style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--white);font-family:var(--font-m);font-size:.9rem;letter-spacing:.15em;text-align:center;padding:.6rem .75rem;border-radius:6px;outline:none;text-transform:uppercase"
+          onfocus="this.style.borderColor='rgba(232,24,12,.6)'"
+          onblur="this.style.borderColor='var(--border2)'"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modalConfirm')">Cancel</button>
+      <button class="btn" id="confirmActionBtn" style="background:#e8180c;color:#fff;opacity:.45;cursor:not-allowed" disabled>Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="sb-backdrop" id="sbBackdrop" onclick="toggleSidebar()"></div>
+
+<style>
+/* ── CALENDAR AVAILABILITY LABELS ── */
+.ac-avail {
+  display: block;
+  font-family: var(--font-m, 'DM Mono', monospace);
+  font-size: .5rem;
+  letter-spacing: .1em;
+  margin: .1rem 0 .15rem;
+  line-height: 1;
+}
+.avail-free    { color: #22c55e; }
+.avail-partial { color: #eab308; }
+.avail-full    { color: #f87171; }
+.ac-cell.dim .ac-avail { display: none; }
+
+/* ── DAY PANEL VIEW BUTTON ── */
+.ac-day-view {
+  background: transparent;
+  border: 1px solid var(--border2, #363b48);
+  color: var(--gray, #8b92a5);
+  border-radius: 4px;
+  padding: .15rem .4rem;
+  font-size: .7rem;
+  cursor: pointer;
+  margin-left: .25rem;
+  transition: color .2s, border-color .2s;
+}
+.ac-day-view:hover { color: var(--white, #f0f2f5); border-color: var(--gray, #8b92a5); }
+
+/* ── BOOKING DETAIL MODAL STYLES ── */
+.bd-section {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border, #2a2e38);
+}
+.bd-section:last-child { border-bottom: none; margin-bottom: 0; }
+.bd-section-title {
+  font-family: var(--font-m, 'DM Mono', monospace);
+  font-size: .58rem;
+  letter-spacing: .2em;
+  color: var(--gray, #8b92a5);
+  margin-bottom: .75rem;
+  text-transform: uppercase;
+}
+.bd-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: .5rem;
+  padding: .3rem 0;
+  font-size: .84rem;
+}
+.bd-label { color: var(--gray, #8b92a5); flex-shrink: 0; min-width: 130px; }
+.bd-val   { color: var(--white, #f0f2f5); text-align: right; font-weight: 500; }
+.bd-val.red    { color: #e8180c; }
+.bd-val.green  { color: #22c55e; }
+.bd-val.yellow { color: #eab308; }
+.bd-val.blue   { color: #60a5fa; }
+
+/* Proof of payment note */
+.bd-proof-note {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  margin-top: .75rem;
+  padding: .65rem .85rem;
+  background: rgba(59,130,246,.08);
+  border: 1px solid rgba(59,130,246,.2);
+  border-radius: 5px;
+  font-family: var(--font-m, 'DM Mono', monospace);
+  font-size: .6rem;
+  letter-spacing: .06em;
+  color: #60a5fa;
+  line-height: 1.6;
+}
+.bd-proof-note a { color: #93c5fd; }
+
+/* Action buttons in modal footer */
+.bd-action-done {
+  background: rgba(59,130,246,.1);
+  border: 1px solid rgba(59,130,246,.25);
+  color: #60a5fa;
+  padding: .6rem 1.25rem;
+  border-radius: 6px;
+  font-family: var(--font-d, 'Oswald', sans-serif);
+  font-size: .85rem;
+  letter-spacing: .12em;
+  cursor: pointer;
+  transition: background .2s;
+}
+.bd-action-done:hover { background: rgba(59,130,246,.22); }
+
+.bd-action-deposit {
+  background: rgba(234,179,8,.1);
+  border: 1px solid rgba(234,179,8,.25);
+  color: #eab308;
+  padding: .6rem 1.25rem;
+  border-radius: 6px;
+  font-family: var(--font-d, 'Oswald', sans-serif);
+  font-size: .85rem;
+  letter-spacing: .12em;
+  cursor: pointer;
+  transition: background .2s;
+}
+.bd-action-deposit:hover { background: rgba(234,179,8,.22); }
+
+.bd-action-confirm {
+  background: #22c55e;
+  border: none;
+  color: #fff;
+  padding: .6rem 1.25rem;
+  border-radius: 6px;
+  font-family: var(--font-d, 'Oswald', sans-serif);
+  font-size: .85rem;
+  letter-spacing: .12em;
+  cursor: pointer;
+  transition: background .2s;
+}
+.bd-action-confirm:hover { background: #16a34a; }
+.bd-action-confirm:disabled { background: #2a2e38; color: #5a6070; cursor: not-allowed; }
+
+.bd-action-cancel {
+  background: rgba(248,113,113,.1);
+  border: 1px solid rgba(248,113,113,.25);
+  color: #f87171;
+  padding: .6rem 1.25rem;
+  border-radius: 6px;
+  font-family: var(--font-d, 'Oswald', sans-serif);
+  font-size: .85rem;
+  letter-spacing: .12em;
+  cursor: pointer;
+  transition: background .2s;
+}
+.bd-action-cancel:hover { background: rgba(248,113,113,.2); }
+
+/* Delete button — permanent removal */
+.bd-action-delete {
+  background: rgba(127,29,29,.25);
+  border: 1px solid rgba(248,113,113,.35);
+  color: #fca5a5;
+  padding: .6rem 1.25rem;
+  border-radius: 6px;
+  font-family: var(--font-d, 'Oswald', sans-serif);
+  font-size: .85rem;
+  letter-spacing: .12em;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.bd-action-delete:hover {
+  background: rgba(127,29,29,.45);
+  border-color: rgba(248,113,113,.6);
+}
+
+/* Bookings-table row delete button */
+.bk-act.delete:hover {
+  background: rgba(127,29,29,.25);
+  border-color: rgba(248,113,113,.5);
+  color: #fca5a5;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CLICKABLE STAT CARDS — highlight + press feedback
+   ═══════════════════════════════════════════════════════════════ */
+.stat-card-click,
+.fin-stat-card {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform .22s cubic-bezier(.25,.46,.45,.94),
+    box-shadow .22s,
+    border-color .22s,
+    background .22s;
+  outline: none;
+}
+
+.stat-card-click:hover,
+.fin-stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent, var(--red));
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.4),
+    0 0 0 1px var(--accent, var(--red)),
+    0 0 22px color-mix(in srgb, var(--accent, var(--red)) 30%, transparent);
+}
+
+.stat-card-click:focus-visible,
+.fin-stat-card:focus-visible {
+  outline: 2px solid var(--accent, var(--red));
+  outline-offset: 2px;
+}
+
+.stat-card-click:active,
+.fin-stat-card:active {
+  transform: translateY(-1px) scale(.985);
+  transition-duration: .08s;
+}
+
+/* Selected state — persists until another card is clicked */
+.stat-card-click.is-selected,
+.fin-stat-card.is-selected {
+  border-color: var(--accent, var(--red)) !important;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent, var(--red)) 12%, var(--bg2)) 0%,
+    var(--bg2) 100%
+  ) !important;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--accent, var(--red)) 45%, transparent),
+    0 12px 32px rgba(0,0,0,.45),
+    0 0 28px color-mix(in srgb, var(--accent, var(--red)) 25%, transparent);
+  transform: translateY(-2px);
+}
+
+.stat-card-click.is-selected::after,
+.fin-stat-card.is-selected::after {
+  content: '✓ VIEWING';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-family: var(--font-m, 'DM Mono', monospace);
+  font-size: .5rem;
+  letter-spacing: .14em;
+  color: var(--accent, var(--red));
+  background: color-mix(in srgb, var(--accent, var(--red)) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent, var(--red)) 40%, transparent);
+  padding: 2px 6px;
+  border-radius: 3px;
+  animation: card-badge-in .25s cubic-bezier(.2,.8,.3,1);
+}
+
+@keyframes card-badge-in {
+  from { opacity: 0; transform: translateY(-4px) scale(.9); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+.stat-card-click.just-clicked::before,
+.fin-stat-card.just-clicked::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--accent, var(--red));
+  opacity: .9;
+  pointer-events: none;
+  animation: card-pulse .55s ease-out;
+}
+
+@keyframes card-pulse {
+  0%   { transform: scale(1);    opacity: .9; }
+  100% { transform: scale(1.04); opacity: 0; }
+}
+
+@media (hover: none) {
+  .stat-card-click:hover,
+  .fin-stat-card:hover { transform: none; }
+}
+
+</style></div>
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="SUPABASE_CONFIG.js"></script>
+<script src="MA_CALENDAR.js"></script>
+<script src="MA_SELECT.js"></script>
+<script src="ADMIN.js"></script>
+<script>
+function toggleSidebar() {
+  const sb = document.querySelector('.sidebar');
+  const bd = document.getElementById('sbBackdrop');
+  const open = sb.classList.toggle('open');
+  bd.classList.toggle('open', open);
+}
+document.querySelectorAll('.sb-item[data-page]').forEach(item => {
+  item.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      document.querySelector('.sidebar').classList.remove('open');
+      document.getElementById('sbBackdrop').classList.remove('open');
+    }
+  });
+});
+
+function loadDashCrew() {
+  const el = document.getElementById('dashCrewList');
+  if (!el || typeof db === 'undefined') return;
+  
+  // Fetch all crew, then sort and slice manually in JavaScript
+  db.collection('crew').get().then(snap => {
+    if (snap.empty) {
+      el.innerHTML = '<p style="color:var(--gray2);font-size:.82rem;padding:.5rem 0">No crew added yet. Go to Crew Management to add members.</p>';
+      return;
+    }
+    
+       const crewList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    
+    // Make the container scrollable if there are many crew members
+    el.style.maxHeight = '400px';
+    el.style.overflowY = 'auto';
+      
+    const icons = { 'DJ':'🎧','LEAD DJ':'🎧','LIGHTING':'💡','LIGHTING TECH':'💡','TECH':'🔧','EQUIP TECH':'🔧','DRIVER':'🚐','OPERATOR':'🎵','SOUND':'🔊' };
+    
+    el.innerHTML = crewList.map(c => {
+      const roleUp = (c.role||'').toUpperCase();
+      const icon = Object.entries(icons).find(([k]) => roleUp.includes(k))?.[1] || '👤';
+      const dot = c.available === false ? 'busy' : 'free';
+      return `<div class="crew-row" style="cursor:pointer" onclick="viewCrewMember('${c.id}')" title="View ${c.name}'s profile">
+          <div class="crew-av">${icon}</div>
+          <div><div class="crew-name">${c.name||'—'}</div><div class="crew-role">${c.role||'—'}</div></div>
+          <div class="avail-dot ${dot}"></div>
+        </div>`;
+    }).join('');
+  }).catch(() => {
+    el.innerHTML = '<p style="color:var(--gray2);font-size:.82rem;padding:.5rem 0">No crew data.</p>';
+  });
+}
+window.addEventListener('load', () => setTimeout(loadDashCrew, 1200));
+</script>
+<script>document.addEventListener("DOMContentLoaded",()=>{if(window.lucide)lucide.createIcons();});
+document.addEventListener("navigate",()=>{if(window.lucide)lucide.createIcons();});</script>
+
+<!-- EDIT PRICE MODAL -->
+<div class="modal-overlay" id="modalEditPrice">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <span class="modal-title">EDIT PACKAGE PRICE</span>
+      <button class="modal-close" onclick="closeModal('modalEditPrice')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="epPkgId"/>
+      <input type="hidden" id="epPkgName"/>
+      <input type="hidden" id="epOldPrice"/>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.1rem">
+        <div style="font-family:var(--font-m);font-size:.55rem;letter-spacing:.16em;color:var(--gray2);margin-bottom:.3rem">PACKAGE</div>
+        <div id="epPkgLabel" style="font-weight:600;color:var(--white);font-size:.95rem"></div>
+        <div style="font-family:var(--font-m);font-size:.68rem;color:var(--gray);margin-top:.25rem">Current: <span id="epCurrentLabel" style="color:#e8180c;font-weight:600"></span></div>
+      </div>
+      <div class="form-group">
+        <label>New Price (₱) <span style="color:var(--red)">*</span></label>
+        <input type="number" id="epNewPrice" min="1" step="100" placeholder="Enter new price"/>
+      </div>
+      <div class="form-group">
+        <label>Reason / Notes</label>
+        <input type="text" id="epNotes" placeholder="e.g. Season adjustment, fuel surcharge"/>
+      </div>
+      <div style="background:rgba(234,179,8,.07);border:1px solid rgba(234,179,8,.2);border-radius:6px;padding:.65rem .85rem;font-size:.75rem;color:var(--gray);line-height:1.6">
+        ⚡ Updates the <strong style="color:var(--white)">live price</strong> on the website instantly. Previous bookings are <strong style="color:#22c55e">not affected</strong>. Change is logged to Price History.
+      </div>
+      <div id="epErrorBox" style="display:none;margin-top:.75rem;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);border-radius:6px;padding:.75rem .9rem;font-size:.78rem;color:#fca5a5;line-height:1.6"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modalEditPrice')">Cancel</button>
+      <button class="btn btn-red" onclick="submitEditPrice()">Save Price</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalPriceHistory">
+  <div class="modal" style="max-width:680px">
+    <div class="modal-header">
+      <span class="modal-title">PRICE CHANGE HISTORY</span>
+      <button class="modal-close" onclick="closeModal('modalPriceHistory')">✕</button>
+    </div>
+    <div class="modal-body" style="padding-top:.5rem">
+      <div style="display:grid;grid-template-columns:1fr auto auto 1fr;gap:.5rem 1rem;padding:.4rem 0 .65rem;border-bottom:2px solid var(--border);font-family:var(--font-m);font-size:.52rem;letter-spacing:.14em;color:var(--gray2)">
+        <span>PACKAGE</span><span>OLD PRICE</span><span>NEW PRICE</span><span style="text-align:right">DATE / NOTES</span>
+      </div>
+      <div id="priceHistoryBody" style="max-height:420px;overflow-y:auto"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modalPriceHistory')">Close</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

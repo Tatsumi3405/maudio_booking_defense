@@ -1,0 +1,166 @@
+/* ══════════════════════════════════════════════════════════════
+   MA SELECT — themed dropdown/select replacement
+   Drop-in component matching the M-Audio Pro design system.
+   Relies on the shared :root variables already defined in
+   BOOKING.css / ADMIN.css (--bg2, --border, --red, --font-b, etc).
+   If a page doesn't already define them, the fallbacks below kick in.
+
+   Companion to MA_CALENDAR.css/js — every native <select> on the
+   page is progressively enhanced by MA_SELECT.js into one of these,
+   while the original <select> stays in the DOM (invisible) as the
+   real source of truth, so existing JS keeps reading/writing
+   .value, .selectedIndex, .disabled and the "error" class exactly
+   as before.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  --mas-bg:      var(--bg2, #181b20);
+  --mas-bg-el:   var(--bg3, #1e2128);
+  --mas-bg-hov:  var(--bg4, #252933);
+  --mas-border:  var(--border, #2a2e38);
+  --mas-border2: var(--border2, #363b48);
+  --mas-red:     var(--red, #e8180c);
+  --mas-red-dim: var(--red-dim, rgba(232,24,12,0.12));
+  --mas-red-mid: var(--red-mid, rgba(232,24,12,0.25));
+  --mas-white:   var(--white, #f0f2f5);
+  --mas-gray:    var(--gray, #8b92a5);
+  --mas-gray2:   var(--gray2, #5a6070);
+  --mas-radius:  var(--radius, 6px);
+  --mas-font-b:  var(--font-b, 'Barlow', sans-serif);
+  --mas-font-m:  var(--font-m, 'DM Mono', monospace);
+}
+
+/* ── Wrapper (replaces the select's spot in the layout) ─────────── */
+.ma-select-wrap { position: relative; width: 100%; }
+
+/* Native <select> stays mounted (value/name/onchange/validation all
+   still work) but is fully invisible and non-interactive — the
+   trigger button below handles all pointer/keyboard interaction. */
+.ma-select-native {
+  position: absolute !important;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  border: 0;
+  padding: 0;
+}
+
+/* ── Trigger (visible closed-state control) ──────────────────────── */
+.ma-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  background: var(--mas-bg-el);
+  border: 1px solid var(--mas-border2);
+  color: var(--mas-white);
+  font-family: var(--mas-font-b);
+  font-size: 1.044rem;
+  padding: .55rem .85rem;
+  border-radius: var(--mas-radius);
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.ma-select-trigger:hover { border-color: var(--mas-border2); background: var(--mas-bg-hov); }
+.ma-select-trigger.open,
+.ma-select-trigger:focus-visible {
+  border-color: rgba(232,24,12,.6);
+  box-shadow: 0 0 0 3px var(--mas-red-dim);
+}
+.ma-select-trigger.error { border-color: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,.1); }
+.ma-select-trigger:disabled,
+.ma-select-trigger.disabled { opacity: .5; cursor: not-allowed; }
+
+.ma-select-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ma-select-label.placeholder { color: var(--mas-gray2); }
+
+.ma-select-chevron {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  color: var(--mas-red);
+  opacity: .9;
+  transition: transform .18s ease;
+}
+.ma-select-trigger.open .ma-select-chevron { transform: rotate(180deg); }
+
+/* Compact "pill" trigger variant — for toolbars like Financial Report filters */
+.ma-select-trigger.pill {
+  width: auto;
+  background: var(--mas-bg-el);
+  border: 1px solid var(--mas-border2);
+  padding: .45rem .7rem .45rem .9rem;
+  font-family: var(--mas-font-m);
+  font-size: .82rem;
+  letter-spacing: .05em;
+}
+.ma-select-trigger.pill:hover { border-color: var(--mas-red-mid); }
+.ma-select-trigger.pill .ma-select-label { text-transform: uppercase; }
+
+/* ── Panel (custom option list — this is what replaces the ugly
+      native browser dropdown) ──────────────────────────────────── */
+.ma-select-panel {
+  position: fixed;
+  z-index: 3000;
+  background: var(--mas-bg);
+  border: 1px solid var(--mas-border2);
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.2);
+  padding: .4rem;
+  min-width: 160px;
+  max-width: min(90vw, 440px);
+  max-height: 300px;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(-6px) scale(.98);
+  transform-origin: top left;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.ma-select-panel.ma-select-open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+.ma-select-option {
+  font-family: var(--mas-font-b);
+  font-size: .97rem;
+  color: var(--mas-white);
+  padding: .55rem .8rem;
+  border-radius: 6px;
+  border-left: 2.5px solid transparent;
+  cursor: pointer;
+  transition: background .12s, color .12s, border-color .12s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ma-select-option:hover,
+.ma-select-option.hover { background: var(--mas-bg-el); }
+.ma-select-option.selected {
+  background: var(--mas-red-dim);
+  color: var(--mas-white);
+  font-weight: 600;
+  border-left-color: var(--mas-red);
+}
+.ma-select-option.placeholder-opt { color: var(--mas-gray2); font-weight: 400; }
+.ma-select-option.disabled { color: var(--mas-gray2); opacity: .4; cursor: not-allowed; }
+.ma-select-option.disabled:hover { background: none; }
+
+/* Scrollbar theming to match MA Calendar */
+.ma-select-panel::-webkit-scrollbar { width: 8px; }
+.ma-select-panel::-webkit-scrollbar-thumb { background: var(--mas-border2); border-radius: 4px; }
+.ma-select-panel::-webkit-scrollbar-track { background: transparent; }
+
+@media (max-width: 640px) {
+  .ma-select-panel { max-width: calc(100vw - 24px); }
+}

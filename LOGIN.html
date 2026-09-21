@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://*.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co ws://*.supabase.co wss://*.supabase.co;">
+  <title>M-Audio PRO — Admin Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="LOGIN.css"/>
+</head>
+<body>
+
+<!-- ── Oscilloscope waveform canvas ──────────────────────── -->
+<canvas id="oscCanvas"></canvas>
+
+<!-- ── Session precheck veil (shown while auth resolves) ─── -->
+<div class="session-veil" id="sessionVeil">
+  <img src="PHOTOS/LOGO FR THIS TIME.png" alt="" class="sv-logo"/>
+  <div class="sv-eq" aria-hidden="true">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <p class="sv-label">VERIFYING SESSION</p>
+</div>
+
+<!-- ── Dot grid + glow layers ────────────────────────────── -->
+<div class="bg-grid"  aria-hidden="true"></div>
+<div class="bg-glow"  aria-hidden="true"></div>
+
+<!-- ── Main login UI ─────────────────────────────────────── -->
+<div class="login-wrap" id="loginWrap">
+
+  <div class="login-brand">
+    <img src="PHOTOS/LOGO FR THIS TIME.png" alt="M-Audio Pro Sound" class="login-logo-img"/>
+  </div>
+
+  <div class="login-card" id="loginCard">
+
+    <!-- Scanline texture overlay (pro monitor effect) -->
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- Pulsing SECURE badge -->
+    <div class="secure-tag" aria-hidden="true">SECURE</div>
+
+    <div class="login-card-header">
+      <h1 aria-label="Admin Login">
+        <span id="twText"></span>
+      </h1>
+      <p>Authenticate to access the control panel.</p>
+    </div>
+
+    <div class="login-card-body">
+
+      <!-- Error message -->
+      <div class="login-error" id="loginError"></div>
+
+      <!-- Failed-attempt security meter -->
+      <div class="attempt-meter" id="attemptMeter">
+        <div class="am-row">
+          <span class="am-label">FAILED SIGN-INS</span>
+          <span class="am-count" id="amCount">0 OF 3 FAILED</span>
+        </div>
+        <div class="am-track">
+          <div class="am-fill" id="amFill"></div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group" id="fgEmail">
+        <label for="inputUser">EMAIL ADDRESS</label>
+        <div class="input-shell">
+          <input
+            type="email"
+            id="inputUser"
+            placeholder="admin@maudiopro.com"
+            autocomplete="username"
+            spellcheck="false"
+          />
+          <span class="field-badge" id="emailBadge"></span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group" id="fgPass">
+        <label for="inputPass">PASSWORD</label>
+        <div class="input-shell">
+          <input
+            type="password"
+            id="inputPass"
+            placeholder="Enter password"
+            autocomplete="current-password"
+          />
+          <!-- Eye toggle injected by JS -->
+          <button class="pw-toggle" id="pwToggle" type="button" tabindex="-1" aria-label="Show password"></button>
+        </div>
+        <!-- Caps lock warning -->
+        <div class="caps-warn" id="capsWarn">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"/>
+          </svg>
+          CAPS LOCK IS ACTIVE
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <button class="login-btn" id="loginBtn" type="button">
+        <!-- Normal label -->
+        <span class="btn-label" id="btnLabel">LOGIN TO ADMIN PANEL</span>
+        <!-- VU-meter loading bars (hidden until loading) -->
+        <span class="btn-vu" id="btnVU" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </span>
+      </button>
+
+    </div><!-- /login-card-body -->
+  </div><!-- /login-card -->
+
+  <a href="MAUDIO.html" class="login-back">← BACK TO MAIN WEBSITE</a>
+
+</div><!-- /login-wrap -->
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="SUPABASE_CONFIG.js"></script>
+<script src="LOGIN.js"></script>
+<script src="config.js"></script>
+</body>
+</html>

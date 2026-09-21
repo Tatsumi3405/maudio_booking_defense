@@ -1,0 +1,283 @@
+/* ══════════════════════════════════════════════════════════════
+   MA CALENDAR — themed date & date-range picker
+   Drop-in component matching the M-Audio Pro design system.
+   Relies on the shared :root variables already defined in
+   BOOKING.css / ADMIN.css (--bg2, --border, --red, --font-d, etc).
+   If a page doesn't already define them, the fallbacks below kick in.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  --mac-bg:      var(--bg2, #181b20);
+  --mac-bg-el:   var(--bg3, #1e2128);
+  --mac-bg-hov:  var(--bg4, #252933);
+  --mac-border:  var(--border, #2a2e38);
+  --mac-border2: var(--border2, #363b48);
+  --mac-red:     var(--red, #e8180c);
+  --mac-red-dim: var(--red-dim, rgba(232,24,12,0.12));
+  --mac-red-mid: var(--red-mid, rgba(232,24,12,0.25));
+  --mac-white:   var(--white, #f0f2f5);
+  --mac-gray:    var(--gray, #8b92a5);
+  --mac-gray2:   var(--gray2, #5a6070);
+  --mac-yellow:  var(--yellow, #eab308);
+  --mac-radius:  var(--radius, 6px);
+  --mac-font-d:  var(--font-d, 'Oswald', sans-serif);
+  --mac-font-b:  var(--font-b, 'Barlow', sans-serif);
+  --mac-font-m:  var(--font-m, 'DM Mono', monospace);
+}
+
+/* ── Trigger (replaces native input) ─────────────────────────── */
+.ma-cal-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  background: var(--mac-bg-el);
+  border: 1px solid var(--mac-border2);
+  color: var(--mac-white);
+  font-family: var(--mac-font-b);
+  font-size: 1.044rem;
+  padding: .55rem .75rem .55rem .85rem;
+  border-radius: var(--mac-radius);
+  cursor: pointer;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  user-select: none;
+}
+.ma-cal-trigger:hover { border-color: var(--mac-border2); background: var(--mac-bg-hov); }
+.ma-cal-trigger.open,
+.ma-cal-trigger:focus-visible {
+  border-color: rgba(232,24,12,.6);
+  box-shadow: 0 0 0 3px var(--mac-red-dim);
+}
+.ma-cal-trigger.error { border-color: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,.1); }
+.ma-cal-trigger-text { color: var(--mac-white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ma-cal-trigger-text.placeholder { color: var(--mac-gray2); }
+.ma-cal-trigger-icon { flex-shrink: 0; width: 15px; height: 15px; color: var(--mac-red); opacity: .9; }
+
+/* Compact "pill" trigger variant — for toolbars like Financial Reports */
+.ma-cal-trigger.pill {
+  width: auto;
+  background: var(--mac-bg-el);
+  border: 1px solid var(--mac-border2);
+  padding: .45rem .7rem .45rem .9rem;
+  font-family: var(--mac-font-m);
+  font-size: 0.936rem;
+  letter-spacing: .05em;
+}
+.ma-cal-trigger.pill:hover { border-color: var(--mac-red-mid); }
+
+/* ── Panel shell ──────────────────────────────────────────────── */
+.ma-cal-panel {
+  position: fixed;
+  z-index: 3000;
+  background: var(--mac-bg);
+  border: 1px solid var(--mac-border2);
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.2);
+  padding: .9rem;
+  display: flex;
+  gap: .9rem;
+  opacity: 0;
+  transform: translateY(-6px) scale(.98);
+  transform-origin: top left;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.ma-cal-panel.ma-cal-open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.ma-cal-panel.ma-cal-range { padding: .9rem .9rem .9rem 0; }
+
+/* ── Presets sidebar (range mode) — mirrors .sb-item language ──── */
+.ma-cal-presets {
+  width: 148px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding: 0 .5rem 0 0;
+  border-right: 1px solid var(--mac-border);
+  margin-right: .1rem;
+}
+.ma-cal-preset {
+  font-family: var(--mac-font-b);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--mac-gray);
+  padding: .5rem .6rem;
+  border-radius: var(--mac-radius);
+  border-left: 2.5px solid transparent;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.ma-cal-preset:hover { background: var(--mac-bg-el); color: var(--mac-white); }
+.ma-cal-preset.active {
+  background: var(--mac-red-dim);
+  color: var(--mac-white);
+  border-left-color: var(--mac-red);
+}
+.ma-cal-preset-divider { height: 1px; background: var(--mac-border); margin: .4rem .3rem; }
+
+/* ── Months row ───────────────────────────────────────────────── */
+.ma-cal-months { display: flex; gap: .9rem; }
+.ma-cal-month { width: 232px; }
+
+.ma-cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .6rem;
+}
+.ma-cal-title {
+  font-family: var(--mac-font-d);
+  font-size: 1.025rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--mac-white);
+  text-transform: uppercase;
+}
+.ma-cal-title .yr { color: var(--mac-red); }
+.ma-cal-nav {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 5px;
+  color: var(--mac-gray);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  background: transparent;
+  border: none;
+}
+.ma-cal-nav:hover { background: var(--mac-red-dim); color: var(--mac-red); }
+.ma-cal-nav:disabled { opacity: .25; cursor: default; pointer-events: none; }
+.ma-cal-nav svg { width: 14px; height: 14px; }
+.ma-cal-nav-spacer { width: 24px; }
+
+.ma-cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: .2rem;
+}
+.ma-cal-weekdays span {
+  font-family: var(--mac-font-m);
+  font-size: 0.783rem;
+  letter-spacing: .12em;
+  color: var(--mac-gray2);
+  text-align: center;
+  padding: .25rem 0;
+}
+
+.ma-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 30px;
+  gap: 1px;
+}
+
+.ma-cal-day {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mac-font-b);
+  font-size: 0.975rem;
+  color: var(--mac-white);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .12s, color .12s;
+}
+.ma-cal-day:hover:not(.disabled):not(.other-month) { background: var(--mac-bg-el); }
+.ma-cal-day.other-month { color: var(--mac-gray2); opacity: .35; pointer-events: none; }
+.ma-cal-day.disabled { color: var(--mac-gray2); opacity: .3; cursor: not-allowed; }
+.ma-cal-day.disabled:hover { background: none; }
+
+.ma-cal-day.today { box-shadow: inset 0 0 0 1.5px #3b82f6; color: #3b82f6; font-weight: 600; }
+.ma-cal-day.today.selected { color: #fff; }
+
+.ma-cal-day.selected {
+  background: var(--mac-red);
+  color: #fff;
+  font-weight: 600;
+}
+.ma-cal-day.selected:hover { background: var(--mac-red); }
+
+/* range shading */
+.ma-cal-day.in-range { background: var(--mac-red-dim); border-radius: 0; }
+.ma-cal-day.in-range:hover { background: var(--mac-red-mid); }
+.ma-cal-day.range-start { border-radius: 6px 0 0 6px; }
+.ma-cal-day.range-end   { border-radius: 0 6px 6px 0; }
+.ma-cal-day.range-start.range-end { border-radius: 6px; }
+.ma-cal-day.range-start,
+.ma-cal-day.range-end {
+  background: var(--mac-red);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* availability dots (booking calendar) */
+.ma-cal-day .dot {
+  position: absolute;
+  bottom: 3px; left: 50%;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+.ma-cal-day .dot.full    { background: var(--mac-red); }
+.ma-cal-day .dot.partial { background: var(--mac-yellow); }
+.ma-cal-day.selected .dot,
+.ma-cal-day.range-start .dot,
+.ma-cal-day.range-end .dot { background: #fff; }
+
+/* ── Footer ───────────────────────────────────────────────────── */
+.ma-cal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: .75rem;
+  padding-top: .65rem;
+  border-top: 1px solid var(--mac-border);
+}
+.ma-cal-legend {
+  display: flex;
+  gap: .7rem;
+  font-family: var(--mac-font-m);
+  font-size: 0.783rem;
+  letter-spacing: .05em;
+  color: var(--mac-gray2);
+}
+.ma-cal-legend span { display: inline-flex; align-items: center; gap: .3rem; }
+.ma-cal-legend i { width: 5px; height: 5px; border-radius: 50%; display: inline-block; }
+.ma-cal-legend i.full { background: var(--mac-red); }
+.ma-cal-legend i.partial { background: var(--mac-yellow); }
+
+.ma-cal-actions { display: flex; gap: .5rem; margin-left: auto; }
+.ma-cal-btn {
+  font-family: var(--mac-font-m);
+  font-size: 0.884rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--mac-border2);
+  color: var(--mac-gray);
+  padding: .35rem .7rem;
+  border-radius: var(--mac-radius);
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.ma-cal-btn:hover { color: var(--mac-white); border-color: var(--mac-gray); }
+.ma-cal-btn.primary { background: var(--mac-red); border-color: var(--mac-red); color: #fff; }
+.ma-cal-btn.primary:hover { background: #ff2115; border-color: #ff2115; }
+.ma-cal-btn.primary:disabled { background: var(--mac-border2); border-color: var(--mac-border2); color: var(--mac-gray2); cursor: not-allowed; }
+
+.ma-cal-range-readout {
+  font-family: var(--mac-font-m);
+  font-size: 0.884rem;
+  color: var(--mac-white);
+  letter-spacing: .03em;
+}
+.ma-cal-range-readout .sep { color: var(--mac-gray2); margin: 0 .35rem; }
+
+@media (max-width: 640px) {
+  .ma-cal-panel.ma-cal-range { flex-direction: column; }
+  .ma-cal-presets { width: 100%; flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--mac-border); padding: 0 0 .5rem; margin: 0 0 .5rem; }
+  .ma-cal-months { flex-direction: column; }
+  .ma-cal-month { width: 100%; }
+}

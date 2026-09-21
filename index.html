@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 🔒 CSP SECURITY -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://*.supabase.co 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co ws://*.supabase.co wss://*.supabase.co; media-src 'self' blob:;">
+  <title>M-Audio PRO — Lights & Sounds (SECURE)</title>
+
+  <link rel="stylesheet" href="MAUDIO.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Cursor restore when customizer modal is open — must be last to win over cursor:none !important -->
+  <style id="base-cursor-rules">
+    /* When customizer overlay is open, restore cursor inside it */
+    .cust-overlay.open { cursor: auto !important; }
+    .cust-overlay.open * { cursor: auto !important; }
+    .cust-overlay.open button,
+    .cust-overlay.open .cet-btn,
+    .cust-overlay.open .ccr-btn,
+    .cust-overlay.open .cqb,
+    .cust-overlay.open .cust-close,
+    .cust-overlay.open .cust-next,
+    .cust-overlay.open .cust-back,
+    .cust-overlay.open .cust-book-btn,
+    .cust-overlay.open .lw-radio-btn { cursor: pointer !important; }
+    /* Click feedback animation for LED wall buttons */
+    .lw-radio-btn { transition: transform .1s, border-color .15s, background .15s, box-shadow .15s !important; }
+    .lw-radio-btn:active { transform: scale(0.96) !important; }
+    .lw-radio-btn.active {
+      background: var(--red-dim) !important;
+      border-color: var(--red) !important;
+      box-shadow: 0 0 0 3px rgba(232,24,12,.18), 0 4px 16px rgba(232,24,12,.15) !important;
+    }
+    .lw-radio-btn.active .lw-radio-price { color: #fff !important; }
+    /* cil-item click animation */
+    .cil-item { transition: border-color .15s, background .15s !important; }
+    .cqb:active { transform: scale(0.9) !important; }
+    /* cust-book-btn pulse on hover */
+    .cust-book-btn { position: relative; overflow: hidden; }
+    .cust-book-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.08);
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .cust-book-btn:hover::after { opacity: 1; }
+    .cust-book-btn:active { transform: scale(0.98) translateY(0) !important; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <img src="PHOTOS/MAUDIO_WORD.png" alt="M-Audio PRO Logo" class="nav-logo-img"/>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home"       class="nl active"><span class="nl-num">01</span>HOME</a></li>
+        <li><a href="#services"   class="nl"><span class="nl-num">02</span>SERVICES</a></li>
+        <li><a href="#packages"   class="nl"><span class="nl-num">03</span>PACKAGES</a></li>
+        <li><a href="#booking"    class="nl"><span class="nl-num">04</span>BOOKING</a></li>
+        <li><a href="#faq"        class="nl"><span class="nl-num">05</span>FAQ</a></li>
+        <li><a href="#contact"    class="nl"><span class="nl-num">06</span>CONTACT</a></li>
+        <li><a href="#calendar"   class="nl"><span class="nl-num">07</span>SCHEDULE</a></li>
+      </ul>
+      <button class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mob-menu" id="mobMenu">
+      <a href="#home"     class="mm-link">HOME</a>
+      <a href="#services" class="mm-link">SERVICES</a>
+      <a href="#packages" class="mm-link">PACKAGES</a>
+      <a href="#booking"  class="mm-link">BOOKING</a>
+      <a href="#faq"      class="mm-link">FAQ</a>
+      <a href="#contact"  class="mm-link">CONTACT</a>
+      <a href="#calendar" class="mm-link">SCHEDULE</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════
+       01. HOME / HERO
+  ═══════════════════════════ -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <img src="PHOTOS/LIGHTS1.jpg" alt="" class="hero-bg-img"/>
+      <div class="hero-bg-overlay"></div>
+    </div>
+    <div class="hero-grain"></div>
+    <div class="hero-scanlines"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal-up">
+        <span class="eyebrow-line"></span>
+        <span>EST. 2005 — CORELLA, BOHOL</span>
+        <span class="eyebrow-line"></span>
+      </div>
+      <h1 class="hero-title">
+        <span class="ht-line reveal-up delay-1">STEP INTO</span>
+        <span class="ht-line ht-red reveal-up delay-2">THE RHYTHM</span>
+        <span class="ht-line reveal-up delay-3">OF GREAT DEALS</span>
+      </h1>
+      <p class="hero-sub reveal-up delay-4">PA SYSTEM &nbsp;/&nbsp; DISCO MOBILE &nbsp;/&nbsp; LED WALL &nbsp;/&nbsp; DJ GEARS</p>
+      <div class="hero-cta reveal-up delay-5">
+        <button class="btn-main btn-qa-trigger" onclick="openQAModal()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>BOOK NOW
+          <span class="btn-qa-badge">FREE QUOTE</span>
+        </button>
+        <a href="#packages" class="btn-ghost-v2">EXPLORE PACKAGES <span style="opacity:.6">→</span></a>
+      </div>
+    </div>
+    <div class="hero-stat-bar reveal-up delay-5">
+      <div class="hstat"><span class="hstat-n">19+</span><span class="hstat-l">Years</span></div>
+      <div class="hstat-div"></div>
+      <div class="hstat"><span class="hstat-n">1K+</span><span class="hstat-l">Events</span></div>
+      <div class="hstat-div"></div>
+      <div class="hstat"><span class="hstat-n">53K</span><span class="hstat-l">Followers</span></div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+      <span>SCROLL</span>
+    </div>
+  
+
+</section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>PA SYSTEM</span><span class="t-dot">◆</span>
+      <span>DISCO MOBILE</span><span class="t-dot">◆</span>
+      <span>BATTLE UNIT</span><span class="t-dot">◆</span>
+      <span>LED WALL</span><span class="t-dot">◆</span>
+      <span>WEDDING SETUP</span><span class="t-dot">◆</span>
+      <span>LIGHTS PROVIDER</span><span class="t-dot">◆</span>
+      <span>DJ GEARS</span><span class="t-dot">◆</span>
+      <span>PA SYSTEM</span><span class="t-dot">◆</span>
+      <span>DISCO MOBILE</span><span class="t-dot">◆</span>
+      <span>BATTLE UNIT</span><span class="t-dot">◆</span>
+      <span>LED WALL</span><span class="t-dot">◆</span>
+      <span>WEDDING SETUP</span><span class="t-dot">◆</span>
+      <span>LIGHTS PROVIDER</span><span class="t-dot">◆</span>
+      <span>DJ GEARS</span><span class="t-dot">◆</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════
+       02. SERVICES
+  ═══════════════════════════ -->
+  <section id="services" class="services">
+    <div class="sec-bg-num">02</div>
+    <div class="sec-head reveal-up">
+      <span class="sec-label">WHAT WE OFFER</span>
+      <h2 class="sec-title">SERVICES</h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal-skew" style="--i:0">
+        <div class="svc-num">01</div>
+        <div class="svc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+        <h3>PA SYSTEM</h3>
+        <p>Professional audio for concerts, events, and large gatherings. Crystal-clear sound at any scale.</p>
+        <div class="svc-line"></div>
+      </div>
+      <div class="svc-card reveal-skew" style="--i:1">
+        <div class="svc-num">02</div>
+        <div class="svc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3>DISCO MOBILE</h3>
+        <p>Full mobile disco setup with expert DJs, powerful bass, and immersive lighting.</p>
+        <div class="svc-line"></div>
+      </div>
+      <div class="svc-card reveal-skew" style="--i:2">
+        <div class="svc-num">03</div>
+        <div class="svc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>BATTLE UNIT</h3>
+        <p>High-impact battle sound systems engineered for DJ competitions. Dominate the floor.</p>
+        <div class="svc-line"></div>
+      </div>
+      <div class="svc-card reveal-skew" style="--i:3">
+        <div class="svc-num">04</div>
+        <div class="svc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>LED WALL</h3>
+        <p>Large-format LED video walls for live events, concerts, and corporate displays.</p>
+        <div class="svc-line"></div>
+      </div>
+      <div class="svc-card reveal-skew" style="--i:4">
+        <div class="svc-num">05</div>
+        <div class="svc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>WEDDING</h3>
+        <p>Elegant sound and lighting setups tailored for weddings. Making your day unforgettable.</p>
+        <div class="svc-line"></div>
+      </div>
+      <div class="svc-card reveal-skew" style="--i:5">
+        <div class="svc-num">06</div>
+        <div class="svc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
+        <h3>LIGHTS PROVIDER</h3>
+        <p>Full-spectrum lighting rigs — par LEDs, moving heads, lasers, and smoke machines.</p>
+        <div class="svc-line"></div>
+      </div>
+      <div class="svc-card reveal-skew" style="--i:6">
+        <div class="svc-num">07</div>
+        <div class="svc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+        <h3>DJ GEARS</h3>
+        <p>Professional DJ equipment rental: mixers, turntables, controllers, and full setups.</p>
+        <div class="svc-line"></div>
+      </div>
+      <div class="svc-card svc-card-custom reveal-skew" style="--i:7">
+        <div class="svc-num">08</div>
+        <div class="svc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07M4.93 4.93a10 10 0 0 0 0 14.14M8.46 8.46a5 5 0 0 0 0 7.07"/></svg></div>
+        <h3>CUSTOMIZED</h3>
+        <p>No two events are the same. Tell us what you need — we'll build the perfect sound, lighting, and crew setup from scratch just for you.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Any Event Size</span>
+          <span class="svc-tag">Mix &amp; Match</span>
+          <span class="svc-tag">Your Terms</span>
+        </div>
+        <a href="#packages" class="svc-cta" onclick="setTimeout(openCustomizer,80)">BUILD YOURS →</a>
+        <div class="svc-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════
+       03. PACKAGES
+  ═══════════════════════════ -->
+  <section id="packages" class="packages">
+    <div class="sec-bg-num">03</div>
+    <div class="diag-top"></div>
+    <div class="sec-head reveal-up">
+      <span class="sec-label">CHOOSE YOUR SETUP</span>
+      <h2 class="sec-title">PACKAGES</h2>
+    </div>
+    <!-- ── PACKAGE CATEGORY TABS ───────────────── -->
+    <div class="pkg-tabs-row reveal-up">
+      <button class="pkg-tab active" data-cat="basic"    onclick="switchPkgCat('basic')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:5px"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>BASIC PA</button>
+      <button class="pkg-tab"        data-cat="wedding"  onclick="switchPkgCat('wedding')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:5px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>WEDDING</button>
+      <button class="pkg-tab"        data-cat="bigcrowd" onclick="switchPkgCat('bigcrowd')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:5px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>BIG CROWD</button>
+      <button class="pkg-tab"        data-cat="ledwall"  onclick="switchPkgCat('ledwall')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:5px"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>LED WALL</button>
+      <button class="pkg-tab"        data-cat="disco"    onclick="switchPkgCat('disco')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:5px"><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>DISCO</button>
+      <button class="pkg-tab"        data-cat="custom"   onclick="switchPkgCat('custom')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:5px"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>CUSTOM</button>
+    </div>
+
+    <!-- Cat subtitle & crew badge -->
+    <div class="pkg-cat-meta reveal-up" id="pkgCatMeta">
+      <span class="pkg-cat-subtitle" id="pkgCatSubtitle">For programs, recognitions &amp; small gatherings</span>
+      <span class="pkg-crew-badge" id="pkgCrewBadge">👥 3 crew members included</span>
+    </div>
+
+    <!-- ── CATEGORY: BASIC PA ───────────────── -->
+    <div class="pkg-cat-pane active" id="pcat-basic">
+      <div class="pkg-grid">
+        <div class="pkg-card reveal-up">
+          <div class="pkg-tag">PACKAGE 1</div>
+          <h3 class="pkg-name" style="font-size:1.9rem">BASIC PA</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">5,000</span></div>
+          <ul class="pkg-list">
+            <li>4 pcs — Aerolights RGBW Parleds</li>
+            <li>4 pcs — KOSMO White Amber Parleds</li>
+            <li>2 pcs — Parled Crank Stands</li>
+            <li>2 pcs — TS415 Alto Pro Speakers</li>
+            <li>2 pcs — Phynex Pro Wireless Mic</li>
+            <li>1 pc — Soundcraft SIG12 Mixer</li>
+            <li>1 pc — Laptop for Playback</li>
+            <li>Poster Printing <span class="pkg-incl-tag free">FREE on request</span></li>
+          </ul>
+          <a href="BOOKING.html?pkg=basic-1&price=5000" class="btn-pkg" data-pkg="basic-1">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card pkg-featured reveal-up delay-1">
+          <div class="pkg-tag pkg-tag-hot">PACKAGE 2</div>
+          <h3 class="pkg-name" style="font-size:1.9rem">BASIC PA+</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">6,000</span></div>
+          <ul class="pkg-list">
+            <li>8 pcs — Aerolights RGBW Parleds</li>
+            <li>4 pcs — KOSMO White Amber Parleds</li>
+            <li>2 pcs — Turbosound iQ12 Speakers</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>4 pcs — Phynex Pro Wireless Mic</li>
+            <li>1 pc — Smoke Machine</li>
+            <li>1 pc — Laptop for Playback</li>
+            <li>Poster Printing <span class="pkg-incl-tag free">FREE on request</span></li>
+          </ul>
+          <a href="BOOKING.html?pkg=basic-2&price=6000" class="btn-pkg" data-pkg="basic-2">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up delay-2">
+          <div class="pkg-tag">PACKAGE 3</div>
+          <h3 class="pkg-name" style="font-size:1.9rem">BASIC PRO</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">7,500</span></div>
+          <ul class="pkg-list">
+            <li>12 pcs — Aerolights RGBW Parleds</li>
+            <li>4 pcs — KOSMO White Amber Parleds</li>
+            <li>2 pcs — MATRIX BEAM 230</li>
+            <li>4 pcs — TS415 Alto Pro Speakers</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>4 pcs — Phynex Pro Wireless Mic</li>
+            <li>1 pc — Smoke Machine</li>
+            <li>Poster Printing <span class="pkg-incl-tag free">FREE on request</span></li>
+          </ul>
+          <a href="BOOKING.html?pkg=basic-3&price=7500" class="btn-pkg" data-pkg="basic-3">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CATEGORY: WEDDING ────────────────── -->
+    <div class="pkg-cat-pane" id="pcat-wedding">
+      <div class="pkg-grid pkg-scroll-grid">
+        <div class="pkg-card reveal-up">
+          <div class="pkg-tag">PACKAGE 1</div>
+          <h3 class="pkg-name" style="font-size:1.7rem">WED STARTER</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">5,000</span></div>
+          <ul class="pkg-list">
+            <li>4 pcs — Aerolights RGBW Parleds</li>
+            <li>4 pcs — KOSMO White Amber Parleds</li>
+            <li>2 pcs — TS415 Alto Pro Speakers</li>
+            <li>2 pcs — Phynex Pro Wireless Mic</li>
+            <li>1 pc — Soundcraft SIG12 Mixer</li>
+            <li>Poster Printing <span class="pkg-incl-tag free">FREE</span></li>
+          </ul>
+          <a href="BOOKING.html?pkg=wed-1&price=5000" class="btn-pkg" data-pkg="wed-1">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up delay-1">
+          <div class="pkg-tag">PACKAGE 2</div>
+          <h3 class="pkg-name" style="font-size:1.7rem">WED BASIC</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">6,000</span></div>
+          <ul class="pkg-list">
+            <li>8 pcs — Aerolights RGBW Parleds</li>
+            <li>4 pcs — KOSMO White Amber Parleds</li>
+            <li>2 pcs — Turbosound iQ12 Speakers</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>4 pcs — Phynex Pro Wireless Mic</li>
+            <li>1 pc — Smoke Machine</li>
+            <li>Poster Printing <span class="pkg-incl-tag free">FREE</span></li>
+          </ul>
+          <a href="BOOKING.html?pkg=wed-2&price=6000" class="btn-pkg" data-pkg="wed-2">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up delay-2">
+          <div class="pkg-tag">PACKAGE 3</div>
+          <h3 class="pkg-name" style="font-size:1.7rem">WED PLUS</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">7,500</span></div>
+          <ul class="pkg-list">
+            <li>12 pcs — Aerolights RGBW Parleds</li>
+            <li>4 pcs — KOSMO White Amber Parleds</li>
+            <li>2 pcs — MATRIX BEAM 230</li>
+            <li>4 pcs — TS415 Alto Pro Speakers</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>4 pcs — Phynex Pro Wireless Mic</li>
+            <li>Poster Printing <span class="pkg-incl-tag free">FREE</span></li>
+          </ul>
+          <a href="BOOKING.html?pkg=wed-3&price=7500" class="btn-pkg" data-pkg="wed-3">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up">
+          <div class="pkg-tag">PACKAGE 4</div>
+          <h3 class="pkg-name" style="font-size:1.7rem">WED DELUXE</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">9,500</span></div>
+          <ul class="pkg-list">
+            <li>20 pcs — Aerolights RGBW Parleds</li>
+            <li>2 pcs — MATRIX Crowd Lights</li>
+            <li>4 pcs — KOSMO BEAM 400</li>
+            <li>4 pcs — TS415 Alto Pro Speakers</li>
+            <li>2 pcs — 18" Subwoofer Speaker</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>4 pcs — Phynex Pro Wireless Mic</li>
+            <li>1 pc — Smoke + 1 Haze Machine</li>
+          </ul>
+          <a href="BOOKING.html?pkg=wed-4&price=9500" class="btn-pkg" data-pkg="wed-4">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card pkg-featured reveal-up delay-1">
+          <div class="pkg-tag pkg-tag-hot">PACKAGE 5 · POPULAR</div>
+          <h3 class="pkg-name" style="font-size:1.7rem">WED PREMIUM</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">11,000</span></div>
+          <ul class="pkg-list">
+            <li>20 pcs — Aerolights RGBW Parleds</li>
+            <li>2 pcs — MATRIX Crowd Lights</li>
+            <li>6 pcs — KOSMO BEAM 400</li>
+            <li>4 pcs — Moving Head Stands</li>
+            <li>4 pcs — TS415 Alto Pro Speakers</li>
+            <li>2 pcs — 18" Subwoofer Speaker</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>1 pc — Smoke + 1 Haze Machine</li>
+          </ul>
+          <a href="BOOKING.html?pkg=wed-5&price=11000" class="btn-pkg" data-pkg="wed-5">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up delay-2">
+          <div class="pkg-tag">PACKAGE 6</div>
+          <h3 class="pkg-name" style="font-size:1.7rem">WED ELITE</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">12,000</span></div>
+          <ul class="pkg-list">
+            <li>26 pcs — Aerolights RGBW Parleds</li>
+            <li>2 pcs — MATRIX Crowd Lights</li>
+            <li>6 pcs — KOSMO BEAM 400</li>
+            <li>4 pcs — Moving Head Stands</li>
+            <li>4 pcs — TS415 Alto Pro Speakers</li>
+            <li>2 pcs — 18" Subwoofer Speaker</li>
+            <li>6 pcs — Phynex Pro Wireless Mic</li>
+            <li>1 pc — Smoke + 1 Haze Machine</li>
+          </ul>
+          <a href="BOOKING.html?pkg=wed-6&price=12000" class="btn-pkg" data-pkg="wed-6">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up">
+          <div class="pkg-tag">PACKAGE 7</div>
+          <h3 class="pkg-name" style="font-size:1.7rem">WED GRAND</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">14,000</span></div>
+          <ul class="pkg-list">
+            <li>30 pcs — Aerolights RGBW Parleds</li>
+            <li>8 pcs — KOSMO BEAM 400</li>
+            <li>4 pcs — Moving Head Stands</li>
+            <li>2 pcs — Turbo Sound iQ12 Speakers</li>
+            <li>4 pcs — TS415 Alto Pro Speakers</li>
+            <li>2 pcs — 18" Subwoofer Speaker</li>
+            <li>6 pcs — Phynex Pro Wireless Mic</li>
+            <li>2 pcs — Smoke + 1 Haze Machine</li>
+          </ul>
+          <a href="BOOKING.html?pkg=wed-7&price=14000" class="btn-pkg" data-pkg="wed-7">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card pkg-featured reveal-up delay-1">
+          <div class="pkg-tag pkg-tag-hot">PACKAGE 8 · FULL SETUP</div>
+          <h3 class="pkg-name" style="font-size:1.7rem">WED ULTRA</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">18,000</span></div>
+          <ul class="pkg-list">
+            <li>44 pcs — Aerolights RGBW Parleds</li>
+            <li>8 pcs — KOSMO White Amber (FRONTAL)</li>
+            <li>4 pcs — MATRIX Crowd Lights</li>
+            <li>8 pcs — KOSMO BEAM 400</li>
+            <li>8 pcs — MATRIX BEAM 280</li>
+            <li>4 pcs — Moving Head Stands</li>
+            <li>4 pcs — TS415 Alto Pro Speakers</li>
+            <li>2 pcs — 18" Subwoofer Speaker</li>
+            <li>2 pcs — Smoke + 1 Haze Machine</li>
+          </ul>
+          <a href="BOOKING.html?pkg=wed-8&price=18000" class="btn-pkg" data-pkg="wed-8">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+      </div>
+      <div class="pkg-scroll-hint">← Scroll to see all 8 packages →</div>
+    </div>
+
+    <!-- ── CATEGORY: BIG CROWD ──────────────── -->
+    <div class="pkg-cat-pane" id="pcat-bigcrowd">
+      <div class="pkg-grid">
+        <div class="pkg-card reveal-up">
+          <div class="pkg-tag">PACKAGE 8 · BIG CROWD</div>
+          <h3 class="pkg-name" style="font-size:1.8rem">CROWD PRO</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">18,000</span></div>
+          <ul class="pkg-list">
+            <li>30 pcs — Aerolights RGBW Parleds</li>
+            <li>8 pcs — KOSMO White Amber (FRONTAL)</li>
+            <li>2 pcs — MATRIX Crowd Lights</li>
+            <li>8 pcs — KOSMO BEAM 400</li>
+            <li>4 pcs — Moving Head Stands</li>
+            <li>2 pcs — Passive P-AUDIO Tower Speakers</li>
+            <li>2 pcs — TS415 ALTO Speakers</li>
+            <li>2 pcs — 18" Passive Subwoofer</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>6 pcs — Phynex Pro Wireless Mic</li>
+            <li>2 pcs — Smoke + 1 Haze Machine</li>
+          </ul>
+          <a href="BOOKING.html?pkg=big-8&price=18000" class="btn-pkg" data-pkg="big-8">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card pkg-featured reveal-up delay-1">
+          <div class="pkg-tag pkg-tag-hot">PACKAGE 9 · BIG CROWD</div>
+          <h3 class="pkg-name" style="font-size:1.8rem">CROWD MAX</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">22,000</span></div>
+          <ul class="pkg-list">
+            <li>44 pcs — Aerolights RGBW Parleds</li>
+            <li>8 pcs — KOSMO White Amber (FRONTAL)</li>
+            <li>4 pcs — MATRIX Crowd Lights</li>
+            <li>8 pcs — KOSMO BEAM 400</li>
+            <li>8 pcs — MATRIX BEAM 280</li>
+            <li>4 pcs — Moving Head Stands</li>
+            <li>4 pcs — TS415 Alto Pro Speakers</li>
+            <li>2 pcs — Passive P-AUDIO Tower Speakers</li>
+            <li>2 pcs — 18" Subwoofer Speaker</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>6 pcs — Phynex Pro Wireless Mic</li>
+            <li>2 pcs — Smoke + 1 Haze Machine</li>
+          </ul>
+          <a href="BOOKING.html?pkg=big-9&price=22000" class="btn-pkg" data-pkg="big-9">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up delay-2" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:1rem">
+          <div class="pkg-tag" style="color:var(--red)">NEED MORE?</div>
+          <h3 class="pkg-name" style="font-size:1.6rem">CUSTOM<br>LARGE EVENT</h3>
+          <p style="font-size:.9rem;color:var(--gray);line-height:1.7">For concerts, festivals and multi-stage setups beyond our standard packages — contact us for a fully custom quotation.</p>
+          <a href="#contact" class="btn-pkg">GET A QUOTE</a>
+          <div class="pkg-gfx"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CATEGORY: LED WALL ───────────────── -->
+    <div class="pkg-cat-pane" id="pcat-ledwall">
+      <div class="pkg-grid">
+        <div class="pkg-card reveal-up">
+          <div class="pkg-tag">35 PANELS</div>
+          <h3 class="pkg-name">LED WALL</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">14,000</span></div>
+          <div class="pkg-lw-location-note">
+            <span class="pkg-lw-loc active">🏛 Indoors — ₱14,000</span>
+            <span class="pkg-lw-sep">·</span>
+            <span class="pkg-lw-loc">🌤 Outdoors — ₱15,000</span>
+          </div>
+          <ul class="pkg-list">
+            <li>35 LED Wall Panels</li>
+            <li>Full setup &amp; teardown</li>
+            <li>Controller &amp; signal processor</li>
+            <li>Power distribution box</li>
+            <li>2 dedicated LED technicians <span class="pkg-incl-tag">INCLUDED</span></li>
+          </ul>
+          <div class="pkg-lw-btns">
+            <a href="BOOKING.html?pkg=lw-35&price=14000" class="btn-pkg" data-pkg="lw-35" data-venue="indoor" style="margin-right:.5rem">🏛 BOOK INDOOR</a>
+            <a href="BOOKING.html?pkg=lw-35&price=15000" class="btn-pkg" data-pkg="lw-35" data-venue="outdoor">🌤 BOOK OUTDOOR</a>
+          </div>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card pkg-featured reveal-up delay-1">
+          <div class="pkg-tag pkg-tag-hot">40 PANELS · BIGGER IMPACT</div>
+          <h3 class="pkg-name">LED WALL</h3>
+          <div class="pkg-price-wrap"><span class="pkg-currency">₱</span><span class="pkg-price">18,000</span></div>
+          <div class="pkg-lw-location-note">
+            <span class="pkg-lw-loc active">🏛 Indoors — ₱18,000</span>
+            <span class="pkg-lw-sep">·</span>
+            <span class="pkg-lw-loc">🌤 Outdoors — ₱19,000</span>
+          </div>
+          <ul class="pkg-list">
+            <li>40 LED Wall Panels</li>
+            <li>Full setup &amp; teardown</li>
+            <li>Controller &amp; signal processor</li>
+            <li>Power distribution box</li>
+            <li>2 dedicated LED technicians <span class="pkg-incl-tag">INCLUDED</span></li>
+          </ul>
+          <div class="pkg-lw-btns">
+            <a href="BOOKING.html?pkg=lw-40&price=18000" class="btn-pkg" data-pkg="lw-40" data-venue="indoor" style="margin-right:.5rem">🏛 BOOK INDOOR</a>
+            <a href="BOOKING.html?pkg=lw-40&price=19000" class="btn-pkg" data-pkg="lw-40" data-venue="outdoor">🌤 BOOK OUTDOOR</a>
+          </div>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up delay-2" style="display:flex;flex-direction:column;justify-content:center;gap:1.25rem">
+          <div class="pkg-tag" style="color:var(--red)">BUNDLE &amp; SAVE</div>
+          <h3 class="pkg-name" style="font-size:1.9rem">LED WALL<br>+ SOUND</h3>
+          <p style="font-size:.9rem;color:var(--gray);line-height:1.7">Pair an LED Wall with any Basic PA or Wedding package for a complete audiovisual experience. Contact us for bundle pricing.</p>
+          <a href="#contact" class="btn-pkg">ASK FOR BUNDLE</a>
+          <div class="pkg-gfx"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CATEGORY: DISCO ──────────────────── -->
+    <div class="pkg-cat-pane" id="pcat-disco">
+      <div class="pkg-grid">
+        <div class="pkg-card pkg-featured reveal-up" style="grid-column: span 2">
+          <div class="pkg-tag pkg-tag-hot">🪩 MOBILE DISCO SETUP</div>
+          <h3 class="pkg-name">DISCO</h3>
+          <div class="pkg-price-wrap">
+            <span class="pkg-currency">₱</span><span class="pkg-price">27,000</span>
+          </div>
+          <div class="pkg-disco-note">Transportation not included · Contact us for transport rates to your venue</div>
+          <ul class="pkg-list pkg-list-2col">
+            <li>24 pcs — Bass Speakers 18"</li>
+            <li>8 pcs — Mid-Range Speakers</li>
+            <li>8 pcs — Tweeter Speakers</li>
+            <li>32 pcs — Aerolights RGBW Par LEDs</li>
+            <li>8 pcs — Moving Head Lights</li>
+            <li>2 pcs — Laser Lights (2-beam)</li>
+            <li>1 pc — Allen &amp; Heath QU16 Mixer</li>
+            <li>3 Professional DJs <span class="pkg-incl-tag">INCLUDED</span></li>
+            <li>1 pc — Smoke Machine <span class="pkg-incl-tag">INCLUDED</span></li>
+            <li>1 pc — Haze Machine <span class="pkg-incl-tag">INCLUDED</span></li>
+            <li>Poster Printing <span class="pkg-incl-tag free">FREE on request</span></li>
+          </ul>
+          <a href="BOOKING.html?pkg=disco&price=27000" class="btn-pkg" data-pkg="disco">BOOK THIS</a>
+          <div class="pkg-gfx"></div>
+        </div>
+
+        <div class="pkg-card reveal-up delay-1" style="display:flex;flex-direction:column;justify-content:center;gap:1.25rem">
+          <div class="pkg-tag" style="color:var(--red)">WANT MORE?</div>
+          <h3 class="pkg-name" style="font-size:1.9rem">CUSTOM<br>DISCO</h3>
+          <p style="font-size:.9rem;color:var(--gray);line-height:1.7">Need more bass, more lights, or a specific DJ count? Use our Custom Builder to configure your own disco setup exactly the way you want it.</p>
+          <button class="btn-pkg" onclick="switchPkgCat('custom')">BUILD CUSTOM →</button>
+          <div class="pkg-gfx"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CATEGORY: CUSTOM ─────────────────── -->
+    <div class="pkg-cat-pane" id="pcat-custom">
+      <div class="pkg-grid pkg-grid-4">
+        <div class="pkg-card pkg-custom-invite reveal-up delay-3" onclick="openCustomizer()" style="grid-column: 1 / -1">
+          <div class="pkg-tag" style="color:var(--red)">FULLY FLEXIBLE</div>
+          <h3 class="pkg-name">CUSTOM</h3>
+          <div class="pkg-invite-body">
+            <p class="pkg-invite-tagline">Your event, your rules.</p>
+            <p class="pkg-invite-desc">Not sure which package fits? Tell us about your event and we'll build the perfect setup — from microphone count to lighting rigs.</p>
+            <div class="pkg-invite-features">
+              <div class="pkg-invite-feat"><span class="pif-ico">🎤</span><span>Custom mic setup</span></div>
+              <div class="pkg-invite-feat"><span class="pif-ico">🔊</span><span>Speaker config</span></div>
+              <div class="pkg-invite-feat"><span class="pif-ico">💡</span><span>Lighting design</span></div>
+              <div class="pkg-invite-feat"><span class="pif-ico">🎧</span><span>DJ &amp; crew</span></div>
+              <div class="pkg-invite-feat"><span class="pif-ico">✨</span><span>FX machines</span></div>
+              <div class="pkg-invite-feat"><span class="pif-ico">🎨</span><span>Free poster print</span></div>
+            </div>
+          </div>
+          <div class="pkg-invite-cta">
+            <span class="pkg-invite-cta-txt">CUSTOMIZE YOUR BOOKING</span>
+            <span class="pkg-invite-arrow">→</span>
+          </div>
+          <div class="pkg-gfx"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Band note -->
+    <div class="pkg-band-note reveal-up">
+      🎸 <strong>NOTE:</strong> All packages applicable for band setup. Full band backlines additional charge: <strong style="color:var(--red)">₱10,000</strong>
+    </div>
+
+    <!-- CUSTOM BOOKING MODAL -->
+    <div class="cust-overlay" id="custOverlay" onclick="closeCustomizerOutside(event)">
+      <div class="cust-modal" id="custModal">
+        <div class="cust-header">
+          <div>
+            <div class="cust-header-label">STEP-BY-STEP CUSTOMIZER</div>
+            <h2 class="cust-header-title">BUILD YOUR LIGHTING</h2>
+          </div>
+          <button class="cust-close" onclick="closeCustomizer()">✕</button>
+        </div>
+        <div class="cust-progress"><div class="cust-progress-bar" id="custProgressBar"></div></div>
+        <div class="cust-body" id="custBody">
+
+          <!-- STEP 1 — Event type -->
+          <div class="cust-step active" id="cs1">
+            <div class="cust-step-q">What kind of event is this?</div>
+            <div class="cust-step-hint">Choose the one that fits best — we'll pair the right lighting mood.</div>
+            <div class="cust-event-grid" id="eventTypeGrid">
+              <button class="cet-btn" data-val="Wedding"           onclick="selectEventType(this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M12 14c-5 0-8 2-8 4v1h16v-1c0-2-3-4-8-4z"/><path d="M8 6c0-2 4-4 4 0"/></svg><span>Wedding</span></button>
+              <button class="cet-btn" data-val="Birthday Party"    onclick="selectEventType(this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><path d="M12 3v3M8 3v3M16 3v3"/><rect x="4" y="8" width="16" height="10" rx="2"/></svg><span>Birthday</span></button>
+              <button class="cet-btn" data-val="Debut"             onclick="selectEventType(this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Debut</span></button>
+              <button class="cet-btn" data-val="Corporate Event"   onclick="selectEventType(this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg><span>Corporate</span></button>
+              <button class="cet-btn" data-val="Concert / Live Show" onclick="selectEventType(this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span>Concert</span></button>
+              <button class="cet-btn" data-val="Town Fiesta"       onclick="selectEventType(this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Fiesta</span></button>
+              <button class="cet-btn" data-val="Other"             onclick="selectEventType(this)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Other</span></button>
+            </div>
+            <div class="cust-nav"><button class="cust-next" onclick="csNext(1)" disabled id="csNext1">NEXT →</button></div>
+          </div>
+
+          <!-- STEP 2 — Crowd size -->
+          <div class="cust-step" id="cs2">
+            <div class="cust-step-q">How many guests are you expecting?</div>
+            <div class="cust-step-hint">Helps us recommend the right amount of lighting coverage.</div>
+            <div class="cust-crowd-grid" id="crowdGrid">
+              <button class="ccr-btn" data-val="Under 50"   data-rec="small"  onclick="selectCrowd(this)"><span class="ccr-num">50</span><span class="ccr-lbl">Under 50 guests</span></button>
+              <button class="ccr-btn" data-val="50–100"     data-rec="small"  onclick="selectCrowd(this)"><span class="ccr-num">100</span><span class="ccr-lbl">50–100 guests</span></button>
+              <button class="ccr-btn" data-val="100–200"    data-rec="medium" onclick="selectCrowd(this)"><span class="ccr-num">200</span><span class="ccr-lbl">100–200 guests</span></button>
+              <button class="ccr-btn" data-val="200–500"    data-rec="medium" onclick="selectCrowd(this)"><span class="ccr-num">500</span><span class="ccr-lbl">200–500 guests</span></button>
+              <button class="ccr-btn" data-val="500–1000"   data-rec="large"  onclick="selectCrowd(this)"><span class="ccr-num">1K</span><span class="ccr-lbl">500–1,000 guests</span></button>
+              <button class="ccr-btn" data-val="1000+"      data-rec="large"  onclick="selectCrowd(this)"><span class="ccr-num">1K+</span><span class="ccr-lbl">1,000+ guests</span></button>
+            </div>
+            <div class="cust-nav">
+              <button class="cust-back" onclick="csBack(2)">← BACK</button>
+              <button class="cust-next" onclick="csNext(2)" disabled id="csNext2">NEXT →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3 — Lights ONLY -->
+          <div class="cust-step" id="cs3">
+            <div class="cust-step-q">Pick your lighting setup</div>
+            <div class="cust-step-hint">Only lighting is customizable — sound system is quoted separately by our team. Zero is fine for any item.</div>
+
+            <!-- Sound system note — crossed out -->
+            <div class="cust-sound-note">
+              <span class="csn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span>
+              <div>
+                <div class="csn-title">Sound System</div>
+                <div class="csn-sub">Fixed per package — not customizable here. Our team will recommend the right PA for your crowd size.</div>
+              </div>
+              <span class="csn-badge">FIXED</span>
+            </div>
+
+            <div class="cust-item-list" id="lightingList">
+              <div class="cil-item" data-key="parled" data-price="1000" data-name="Aerolights RGBW Parled (set of 4)">
+                <div class="cil-left"><span class="cil-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span><div><div class="cil-name">Aerolights RGBW Parled</div><div class="cil-price">₱1,000 / 4 pcs</div></div></div>
+                <div class="cust-qty-ctrl"><button class="cqb" onclick="cilChange(this,-1)">−</button><span class="cqv">0</span><button class="cqb" onclick="cilChange(this,1)">+</button></div>
+              </div>
+              <div class="cil-item" data-key="movhead" data-price="1500" data-name="Moving Head Light">
+                <div class="cil-left"><span class="cil-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a5 5 0 0 1 5 5v3H7V7a5 5 0 0 1 5-5z"/><rect x="7" y="10" width="10" height="6" rx="2"/><path d="M9 16v4M15 16v4"/><line x1="7" y1="13" x2="2" y2="17"/><line x1="17" y1="13" x2="22" y2="17"/></svg></span><div><div class="cil-name">Moving Head Light</div><div class="cil-price">₱1,500 / pc</div></div></div>
+                <div class="cust-qty-ctrl"><button class="cqb" onclick="cilChange(this,-1)">−</button><span class="cqv">0</span><button class="cqb" onclick="cilChange(this,1)">+</button></div>
+              </div>
+              <div class="cil-item" data-key="laser" data-price="2200" data-name="Laser Light (2-beam)">
+                <div class="cil-left"><span class="cil-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><div class="cil-name">Laser Light (2-beam)</div><div class="cil-price">₱2,200 / pc</div></div></div>
+                <div class="cust-qty-ctrl"><button class="cqb" onclick="cilChange(this,-1)">−</button><span class="cqv">0</span><button class="cqb" onclick="cilChange(this,1)">+</button></div>
+              </div>
+              <div class="cil-item" data-key="strobe" data-price="1200" data-name="Strobe Light">
+                <div class="cil-left"><span class="cil-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><div><div class="cil-name">Strobe Light</div><div class="cil-price">₱1,200 / pc</div></div></div>
+                <div class="cust-qty-ctrl"><button class="cqb" onclick="cilChange(this,-1)">−</button><span class="cqv">0</span><button class="cqb" onclick="cilChange(this,1)">+</button></div>
+              </div>
+              <!-- LED Wall — radio select, only one allowed -->
+              <div class="lw-radio-group">
+                <div class="lw-radio-label"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>LED WALL <span style="font-size:.65rem;color:var(--gray2)">(choose one only)</span></div>
+                <div class="lw-radio-grid">
+                  <button class="lw-radio-btn" data-key="ledwall35" data-price="14000" data-name="LED Wall — 35 panels (indoor)" onclick="selectLwRadio(this)">
+                    <span class="lw-radio-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+                    <span class="lw-radio-name">35 Panels</span>
+                    <span class="lw-radio-sub">Indoor</span>
+                    <span class="lw-radio-price">₱14,000</span>
+                  </button>
+                  <button class="lw-radio-btn" data-key="ledwall35o" data-price="15000" data-name="LED Wall — 35 panels (outdoor)" onclick="selectLwRadio(this)">
+                    <span class="lw-radio-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></span>
+                    <span class="lw-radio-name">35 Panels</span>
+                    <span class="lw-radio-sub">Outdoor</span>
+                    <span class="lw-radio-price">₱15,000</span>
+                  </button>
+                  <button class="lw-radio-btn" data-key="ledwall40" data-price="18000" data-name="LED Wall — 40 panels (indoor)" onclick="selectLwRadio(this)">
+                    <span class="lw-radio-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+                    <span class="lw-radio-name">40 Panels</span>
+                    <span class="lw-radio-sub">Indoor</span>
+                    <span class="lw-radio-price">₱18,000</span>
+                  </button>
+                  <button class="lw-radio-btn" data-key="ledwall40o" data-price="19000" data-name="LED Wall — 40 panels (outdoor)" onclick="selectLwRadio(this)">
+                    <span class="lw-radio-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></span>
+                    <span class="lw-radio-name">40 Panels</span>
+                    <span class="lw-radio-sub">Outdoor</span>
+                    <span class="lw-radio-price">₱19,000</span>
+                  </button>
+                </div>
+              </div>
+              <div class="cil-item cil-free" data-key="poster" data-price="0" data-name="Poster Printing">
+                <div class="cil-left"><span class="cil-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span><div><div class="cil-name">Poster Printing <span class="cil-free-badge">FREE</span></div><div class="cil-price">Complimentary on request</div></div></div>
+                <div class="cust-qty-ctrl"><button class="cqb" onclick="cilChange(this,-1)">−</button><span class="cqv">0</span><button class="cqb" onclick="cilChange(this,1)">+</button></div>
+              </div>
+            </div>
+            <div class="cust-nav">
+              <button class="cust-back" onclick="csBack(3)">← BACK</button>
+              <button class="cust-next" onclick="csNext(3)">REVIEW →</button>
+            </div>
+          </div>
+
+          <!-- STEP 4 — Summary -->
+          <div class="cust-step" id="cs4">
+            <div class="cust-step-q">Here's your custom lighting build</div>
+            <div class="cust-step-hint">Review your selections — contact us after submitting for the full package quote including sound.</div>
+            <div class="cust-summary" id="custSummary"></div>
+            <div class="cust-total-row">
+              <div><div class="cust-total-label">LIGHTING TOTAL</div><div class="cust-total-val">₱<span id="custTotalDisplay">0</span></div></div>
+              <div><div class="cust-total-label">MIN. DOWN PAYMENT (10%)</div><div class="cust-total-down">₱<span id="custDownDisplay">0</span></div></div>
+            </div>
+            <div class="cust-nav" style="margin-top:1.25rem">
+              <button class="cust-back" onclick="csBack(4)">← EDIT</button>
+              <button class="cust-book-btn" onclick="goCustomBookingFromModal()">BOOK THIS BUILD →</button>
+            </div>
+          </div>
+
+        </div>
+        <div class="cust-footer">
+          <span class="cust-step-count">Step <span id="csCount">1</span> of 4</span>
+          <div class="cust-footer-total" id="custFooterTotal" style="display:none">
+            Lighting total: <strong>₱<span id="custRunning">0</span></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-btm"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SIDE PANEL TABS — About / Gallery / Highlights (accessible from hero)
+       These sections are hidden from main scroll flow.
+       They open as full-screen overlays triggered by the side tabs.
+  ═══════════════════════════════════════════════════════ -->
+
+  <!-- SIDE PULL TABS (fixed left edge) — always-visible, bold -->
+  <div class="side-tabs" id="sideTabs">
+
+    <!-- ── TAB 1: ABOUT US ── -->
+    <button class="side-tab" onclick="openSidePanel('about')" aria-label="About Us">
+      <div class="side-tab-accent"></div>
+      <div class="side-tab-inner">
+        <div class="side-tab-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>
+        </div>
+        <span class="side-tab-badge">19+ YRS</span>
+      </div>
+      <div class="side-tab-expanded">
+        <span class="side-tab-expanded-title">ABOUT US</span>
+        <span class="side-tab-expanded-sub">Our story &amp; team</span>
+      </div>
+      <div class="side-tab-arrow">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="side-tab-dot"></div>
+      <div class="side-tab-preview"></div>
+    </button>
+
+    <!-- ── TAB 2: GALLERY ── -->
+    <button class="side-tab" onclick="openSidePanel('gallery')" aria-label="Gallery">
+      <div class="side-tab-accent"></div>
+      <div class="side-tab-inner">
+        <div class="side-tab-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <span class="side-tab-badge">PHOTOS</span>
+      </div>
+      <div class="side-tab-expanded">
+        <span class="side-tab-expanded-title">GALLERY</span>
+        <span class="side-tab-expanded-sub">Setups &amp; events</span>
+      </div>
+      <div class="side-tab-arrow">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="side-tab-dot"></div>
+      <div class="side-tab-preview"></div>
+    </button>
+
+    <!-- ── TAB 3: HIGHLIGHTS ── -->
+    <button class="side-tab" onclick="openSidePanel('highlights')" aria-label="Highlights">
+      <div class="side-tab-accent"></div>
+      <div class="side-tab-inner">
+        <div class="side-tab-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div class="side-tab-wave" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="side-tab-expanded">
+        <span class="side-tab-expanded-title">HIGHLIGHTS</span>
+        <span class="side-tab-expanded-sub">Event reels</span>
+      </div>
+      <div class="side-tab-arrow">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="side-tab-dot"></div>
+      <div class="side-tab-preview"></div>
+    </button>
+
+  </div>
+
+  <!-- SIDE PANEL OVERLAY -->
+  <div class="side-panel-overlay" id="sidePanelOverlay" onclick="closeSidePanel()"></div>
+
+  <!-- ABOUT MODAL (full-screen) -->
+  <div class="about-modal-overlay" id="aboutModalOverlay" onclick="closeAboutModal(event)">
+    <div class="about-modal" id="aboutModal">
+
+      <!-- Close button -->
+      <button class="about-modal-close" onclick="closeSidePanel()" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Hero banner -->
+      <div class="am-hero">
+        <div class="am-hero-noise"></div>
+        <div class="am-hero-content">
+          <div class="am-eyebrow">SINCE 2005 · CORELLA, BOHOL</div>
+          <h2 class="am-hero-title">M-AUDIO<br><span>PRO SOUND</span></h2>
+          <p class="am-hero-sub">Bohol's premier lights &amp; sound provider — delivering world-class audio-visual experiences across weddings, concerts, fiestas, and corporate events.</p>
+        </div>
+        <div class="am-hero-tape"></div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="am-stats-row">
+        <div class="am-stat-box">
+          <span class="am-stat-n">19+</span>
+          <span class="am-stat-l">Years Active</span>
+        </div>
+        <div class="am-stat-sep"></div>
+        <div class="am-stat-box">
+          <span class="am-stat-n">1K+</span>
+          <span class="am-stat-l">Events Done</span>
+        </div>
+        <div class="am-stat-sep"></div>
+        <div class="am-stat-box">
+          <span class="am-stat-n">53K</span>
+          <span class="am-stat-l">FB Followers</span>
+        </div>
+        <div class="am-stat-sep"></div>
+        <div class="am-stat-box">
+          <span class="am-stat-n">3</span>
+          <span class="am-stat-l">Core Team Leaders</span>
+        </div>
+      </div>
+
+      <!-- Story block — text is CMS-editable from Admin → About Us; this markup is the fallback shown before JS renders -->
+      <div class="am-story">
+        <div class="am-story-line"></div>
+        <div class="am-story-text" id="amStoryText">
+          <p>Founded in <strong>2005</strong>, M-Audio Pro Sound started from a single PA rig and grew into Bohol's most trusted full-service events audio-visual company. From small school programs to full-scale concerts and wedding receptions, we've powered every kind of celebration this island has to offer.</p>
+          <p>Today we operate multiple complete PA rigs, an LED video wall system, disco battle units, and a dedicated crew of professional technicians, DJs, and lighting specialists — all based right here in Corella.</p>
+        </div>
+      </div>
+
+      <!-- Team section — cards are CMS-editable from Admin → About Us, rendered by MAUDIO.js -->
+      <div class="am-team-section">
+        <div class="am-section-label">
+          <span class="am-section-label-line"></span>
+          THE TEAM
+          <span class="am-section-label-line"></span>
+        </div>
+
+        <div class="am-team-grid" id="amTeamGrid">
+          <!-- Rendered by renderTeamGrid() in MAUDIO.js — falls back to DEFAULT_TEAM_MEMBERS if Supabase has no rows -->
+        </div>
+      </div>
+
+      <!-- Location footer -->
+      <div class="am-location-footer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Poblacion, Corella, Bohol, Philippines · 0930 261 7168</span>
+        <a href="https://facebook.com/maudioprosoundo" target="_blank" rel="noopener" class="am-fb-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          fb.com/maudioprosoundo
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Team Photo Lightbox -->
+  <div class="team-photo-lb" id="teamPhotoLb" onclick="closeTeamPhotoLb()">
+    <button class="team-lb-close" onclick="closeTeamPhotoLb()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="team-lb-inner" onclick="event.stopPropagation()">
+      <img src="" alt="" id="teamLbImg" class="team-lb-img"/>
+      <div class="team-lb-caption">
+        <div class="team-lb-name" id="teamLbName"></div>
+        <div class="team-lb-role" id="teamLbRole"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY MODAL (centered overlay) -->
+  <div class="ghl-modal-overlay" id="galleryModalOverlay" onclick="closeGalleryModal(event)">
+    <div class="ghl-modal" id="galleryModal">
+      <button class="ghl-modal-close" onclick="closeSidePanel()" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="ghl-modal-header">
+        <div class="ghl-modal-eyebrow">CAPTURED MOMENTS</div>
+        <h2 class="ghl-modal-title">OUR WORK</h2>
+      </div>
+      <div class="sp-gallery-filters" style="padding:1.25rem 1.5rem .75rem">
+        <button class="sp-filter-btn active" onclick="spGalleryFilter(this,'all')">ALL</button>
+        <button class="sp-filter-btn" onclick="spGalleryFilter(this,'photo')">PHOTOS</button>
+        <button class="sp-filter-btn" onclick="spGalleryFilter(this,'video')">VIDEOS</button>
+      </div>
+      <div class="sp-gallery-grid" id="spGalleryGrid" style="padding:0 1.5rem 1.5rem">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS MODAL (centered overlay) -->
+  <div class="ghl-modal-overlay" id="highlightsModalOverlay" onclick="closeHighlightsModal(event)">
+    <div class="ghl-modal" id="highlightsModal">
+      <button class="ghl-modal-close" onclick="closeSidePanel()" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="ghl-modal-header">
+        <div class="ghl-modal-eyebrow">EVENT REELS</div>
+        <h2 class="ghl-modal-title">HIGHLIGHTS</h2>
+      </div>
+      <div class="sp-videos-grid" id="spVideosGrid" style="padding:1.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem">
+        <!-- Rendered by renderHighlightsGrid() in MAUDIO.js from GALLERY_ITEMS (type:'video') -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       Hidden sections (IDs kept for backward nav compat)
+  ═══════════════════════════════════════════════════════ -->
+  <div id="about" style="display:none"></div>
+  <div id="team" style="display:none"></div>
+  <div id="gallery" style="display:none"></div>
+  <div id="videos" style="display:none"></div>
+
+    <!-- ═══════════════════════════
+       07. BOOKING PROCESS
+  ═══════════════════════════ -->
+  <section id="booking" class="bk-process">
+    <div class="sec-bg-num" style="opacity:.035;font-size:20vw;right:auto;left:-.05em;top:50%;transform:translateY(-50%)">HOW</div>
+    <div class="sec-head reveal-up">
+      <span class="sec-label">HOW IT WORKS</span>
+      <h2 class="sec-title">BOOKING PROCESS</h2>
+      <p style="font-size:.9rem;color:var(--gray);line-height:1.75;max-width:500px;margin:.6rem auto 0;text-align:center">From your first message to the last beat — here's how every booking flows, and how our admin tracks each step.</p>
+    </div>
+    <div class="bkp-wrap">
+      <div class="bkp-steps">
+
+        <div class="bkp-step reveal-up">
+          <div class="bkp-num">01</div>
+          <div class="bkp-icon-ring bkp-gray"><span>💬</span></div>
+          <div class="bkp-body">
+            <span class="bkp-badge bkp-b-gray">INQUIRY</span>
+            <h4 class="bkp-title">Send Your Request</h4>
+            <p class="bkp-desc">Reach out via Facebook, Messenger, or our contact form. Tell us your event date, venue, and what kind of setup you need.</p>
+            <div class="bkp-admin-tag"><span>🖥</span>Admin logs it as <strong>INQUIRY</strong> in Bookings</div>
+          </div>
+        </div>
+        <div class="bkp-connector"></div>
+
+        <div class="bkp-step reveal-up delay-1">
+          <div class="bkp-num">02</div>
+          <div class="bkp-icon-ring bkp-yellow"><span>📋</span></div>
+          <div class="bkp-body">
+            <span class="bkp-badge bkp-b-yellow">PENDING</span>
+            <h4 class="bkp-title">We Review & Quote</h4>
+            <p class="bkp-desc">Admin checks crew and equipment availability for your date. You receive a detailed quote within 24 hours.</p>
+            <div class="bkp-admin-tag"><span>🖥</span>Admin updates status → <strong>PENDING</strong></div>
+          </div>
+        </div>
+        <div class="bkp-connector"></div>
+
+        <div class="bkp-step reveal-up delay-2">
+          <div class="bkp-num">03</div>
+          <div class="bkp-icon-ring bkp-blue"><span>💳</span></div>
+          <div class="bkp-body">
+            <span class="bkp-badge bkp-b-blue">DEPOSIT PAID</span>
+            <h4 class="bkp-title">Pay 10% Downpayment</h4>
+            <p class="bkp-desc">Lock in your slot with a minimum 10% downpayment via bank transfer or cash. No slot is guaranteed without a deposit.</p>
+            <div class="bkp-admin-tag"><span>💰</span>Admin logs payment → <strong>DEPOSIT PAID</strong></div>
+          </div>
+        </div>
+        <div class="bkp-connector"></div>
+
+        <div class="bkp-step reveal-up delay-3">
+          <div class="bkp-num">04</div>
+          <div class="bkp-icon-ring bkp-green"><span>✅</span></div>
+          <div class="bkp-body">
+            <span class="bkp-badge bkp-b-green">CONFIRMED</span>
+            <h4 class="bkp-title">Booking Locked In</h4>
+            <p class="bkp-desc">Crew is assigned, equipment is reserved, and your event appears on the booking calendar.</p>
+            <div class="bkp-admin-tag"><span>📅</span>Appears on <strong>Booking Calendar</strong> — crew assigned</div>
+          </div>
+        </div>
+        <div class="bkp-connector"></div>
+
+        <div class="bkp-step reveal-up delay-1">
+          <div class="bkp-num">05</div>
+          <div class="bkp-icon-ring bkp-red"><span>🚐</span></div>
+          <div class="bkp-body">
+            <span class="bkp-badge bkp-b-red">EVENT DAY</span>
+            <h4 class="bkp-title">Setup & Go Live</h4>
+            <p class="bkp-desc">Our crew arrives hours before the event for full setup, sound check, and lighting test. You just show up and enjoy.</p>
+            <div class="bkp-admin-tag"><span>🎧</span>Crew marked <strong>ON DUTY</strong> in dashboard</div>
+          </div>
+        </div>
+        <div class="bkp-connector"></div>
+
+        <div class="bkp-step reveal-up delay-2">
+          <div class="bkp-num">06</div>
+          <div class="bkp-icon-ring bkp-green"><span>🎉</span></div>
+          <div class="bkp-body">
+            <span class="bkp-badge bkp-b-green">COMPLETED</span>
+            <h4 class="bkp-title">Pay Balance & Wrap Up</h4>
+            <p class="bkp-desc">Settle the remaining balance after the event. Our crew handles the full teardown. Thank you for trusting M-Audio Pro Sound!</p>
+            <div class="bkp-admin-tag"><span>🏁</span>Booking marked <strong>COMPLETED</strong></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="bkp-sidebar">
+        <div class="bkp-status-card">
+          <div class="bkp-sc-title">BOOKING STATUS TRACKER</div>
+          <div class="bkp-sc-desc">This is how admin tracks your booking in the dashboard — from first message to completion.</div>
+          <div class="bkp-sc-stages">
+            <div class="bkp-stage bkp-stage-gray"><span class="bkp-stage-dot"></span><div><strong>INQUIRY</strong><span>Initial request received</span></div></div>
+            <div class="bkp-stage-line"></div>
+            <div class="bkp-stage bkp-stage-yellow"><span class="bkp-stage-dot"></span><div><strong>PENDING</strong><span>Reviewing & preparing quote</span></div></div>
+            <div class="bkp-stage-line"></div>
+            <div class="bkp-stage bkp-stage-blue"><span class="bkp-stage-dot"></span><div><strong>DEPOSIT PAID</strong><span>Date secured</span></div></div>
+            <div class="bkp-stage-line"></div>
+            <div class="bkp-stage bkp-stage-green"><span class="bkp-stage-dot"></span><div><strong>CONFIRMED</strong><span>Crew & equipment assigned</span></div></div>
+            <div class="bkp-stage-line"></div>
+            <div class="bkp-stage bkp-stage-red"><span class="bkp-stage-dot"></span><div><strong>EVENT DAY</strong><span>Crew on site, live</span></div></div>
+            <div class="bkp-stage-line"></div>
+            <div class="bkp-stage bkp-stage-green"><span class="bkp-stage-dot"></span><div><strong>COMPLETED</strong><span>Balance paid, wrapped up</span></div></div>
+          </div>
+        </div>
+        <div class="bkp-faq-card">
+          <div class="bkp-sc-title">QUICK ANSWERS</div>
+          <div class="bkp-faq-item"><span class="bkp-faq-q">How far in advance?</span><span class="bkp-faq-a">2–4 weeks minimum. Peak seasons: book 1–2 months early.</span></div>
+          <div class="bkp-faq-item"><span class="bkp-faq-q">How do I pay?</span><span class="bkp-faq-a">Bank transfer (BDO / BPI / Metrobank) or cash.</span></div>
+          <div class="bkp-faq-item"><span class="bkp-faq-q">Is deposit refundable?</span><span class="bkp-faq-a">Non-refundable, but we can reschedule within 30 days notice.</span></div>
+        </div>
+        <a href="#contact" class="btn-main" style="display:block;text-align:center;margin-top:.25rem">START YOUR BOOKING →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════
+       08. FAQ
+  ═══════════════════════════ -->
+  <section id="faq" class="faq">
+    <div class="sec-bg-num">08</div>
+    <div class="sec-head reveal-up">
+      <span class="sec-label">COMMON QUESTIONS</span>
+      <h2 class="sec-title">FAQ</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal-up">
+        <button class="faq-q">How far in advance should I book?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>We recommend booking at least 2–4 weeks in advance. For peak season (December, Valentine's), book 1–2 months early.</p></div>
+      </div>
+      <div class="faq-item reveal-up delay-1">
+        <button class="faq-q">Do you cover areas outside Bohol?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>We're based in Corella, Bohol but can cover nearby areas. Travel fees may apply. Contact us for details.</p></div>
+      </div>
+      <div class="faq-item reveal-up delay-2">
+        <button class="faq-q">What payment methods do you accept?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>We accept cash (within 3 days of confirmation) and bank transfers (BDO / BPI / Metrobank). A minimum 10% down payment is required to secure your booking. Balance is due on event day.</p></div>
+      </div>
+      <div class="faq-item reveal-up delay-3">
+        <button class="faq-q">Can I customize a package?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>Absolutely. All packages are fully customizable. Contact us and we'll build a tailored quote for your event.</p></div>
+      </div>
+      <div class="faq-item reveal-up">
+        <button class="faq-q">Is setup and teardown included?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p>Yes — full setup and teardown is included in all packages. Our team arrives early so everything is ready before guests arrive.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════
+       09. CONTACT
+  ═══════════════════════════ -->
+  <section id="contact" class="contact">
+    <div class="diag-top"></div>
+    <div class="sec-bg-num">09</div>
+    <div class="sec-head reveal-up">
+      <span class="sec-label">GET IN TOUCH</span>
+      <h2 class="sec-title">CONTACT US</h2>
+    </div>
+    <div class="contact-grid">
+      <a href="tel:09302617168" class="c-card reveal-up">
+        <span class="c-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.92 3.32 2 2 0 0 1 3.92 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.99 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg></span>
+        <div class="c-card-body"><span class="c-card-label">CALL US</span><span class="c-card-val">0930 261 7168</span><span class="c-card-hint">Tap to call directly</span></div>
+        <span class="c-card-arr">→</span>
+      </a>
+      <a href="https://www.facebook.com/maudioprosound" target="_blank" rel="noopener" class="c-card reveal-up delay-1">
+        <span class="c-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>
+        <div class="c-card-body"><span class="c-card-label">FACEBOOK</span><span class="c-card-val">M-Audio Pro Sound</span><span class="c-card-hint">13K likes · 53K followers</span></div>
+        <span class="c-card-arr">→</span>
+      </a>
+      <a href="https://m.me/maudioprosoundo" target="_blank" rel="noopener" class="c-card reveal-up delay-2">
+        <span class="c-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <div class="c-card-body"><span class="c-card-label">MESSENGER</span><span class="c-card-val">Message Us on FB</span><span class="c-card-hint">Fastest way to book</span></div>
+        <span class="c-card-arr">→</span>
+      </a>
+      <div class="c-card no-link reveal-up delay-3">
+        <span class="c-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div class="c-card-body"><span class="c-card-label">LOCATION</span><span class="c-card-val">Poblacion, Corella</span><span class="c-card-hint">Bohol, Philippines</span></div>
+      </div>
+      <div class="c-card no-link reveal-up">
+        <span class="c-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+        <div class="c-card-body"><span class="c-card-label">OPERATING SINCE</span><span class="c-card-val">Year 2005</span><span class="c-card-hint">20 years of excellence</span></div>
+      </div>
+    </div>
+    <div class="diag-btm"></div>
+  </section>
+
+  <!-- ═══════════════════════════
+       10. SCHEDULE / CALENDAR
+  ═══════════════════════════ -->
+  <section id="calendar" class="pub-calendar">
+    <div class="sec-bg-num">10</div>
+    <div class="sec-head reveal-up">
+      <span class="sec-label">CHECK AVAILABILITY</span>
+      <h2 class="sec-title">BOOKING SCHEDULE</h2>
+    </div>
+    <div class="pub-cal-wrap">
+      <div class="pub-cal-main reveal-left">
+        <div class="pub-cal-nav">
+          <button class="cal-arrow" id="pubCalPrev">&#8592;</button>
+          <span class="pub-cal-month" id="pubCalTitle">— 2025</span>
+          <button class="cal-arrow" id="pubCalNext">&#8594;</button>
+        </div>
+        <div class="pub-cal-grid">
+          <div class="cal-dow">SUN</div><div class="cal-dow">MON</div><div class="cal-dow">TUE</div>
+          <div class="cal-dow">WED</div><div class="cal-dow">THU</div><div class="cal-dow">FRI</div><div class="cal-dow">SAT</div>
+        </div>
+        <div class="pub-cal-days" id="pubCalDays"></div>
+        <div class="pub-cal-legend" id="pubCalLegend">
+          <span class="pcl-item"><span class="cal-slot-dot slot-disco"></span> Disco</span>
+          <span class="pcl-item"><span class="cal-slot-dot slot-pa"></span> PA / Program</span>
+          <span class="pcl-item"><span class="cal-slot-dot slot-ledwall"></span> LED Wall</span>
+          <span class="pcl-item"><span class="pcl-full"></span> Full</span>
+        </div>
+      </div>
+      <div class="pub-cal-sidebar reveal-right">
+        <div class="pub-cal-sidebar-head">
+          <span class="sec-label" style="text-align:left;display:block;margin-bottom:0.5rem">UPCOMING EVENTS</span>
+        </div>
+        <div class="pub-cal-events" id="pubCalEvents">
+          <div class="pce-empty">No upcoming bookings shown.</div>
+        </div>
+        <div class="pub-cal-note reveal-up">
+          <span class="pcn-icon">📅</span>
+          <div>
+            <strong>Want to book a date?</strong>
+            <p>Contact us to check availability and reserve your event slot.</p>
+            <a href="#contact" class="btn-main" style="display:inline-block;margin-top:0.75rem;font-size:0.78rem;padding:0.6rem 1.5rem">BOOK NOW</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKSTAGE ADMIN BADGE -->
+  <a href="LOGIN.html" class="backstage-badge" id="backstageBadge" title="Admin Access">
+    <div class="bb-chain">
+      <span class="bb-link"></span><span class="bb-link"></span><span class="bb-link"></span>
+    </div>
+    <div class="bb-card">
+      <div class="bb-card-stripe"></div>
+      <div class="bb-card-body">
+        <span class="bb-label">BACKSTAGE</span>
+        <span class="bb-sub">ACCESS ONLY</span>
+        <div class="bb-icon">🔐</div>
+        <span class="bb-code">ADMIN PANEL</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="logo-m sm">M</div>
+        <div>
+          <span class="logo-top">M-AUDIO PRO</span>
+          <span class="logo-btm">LIGHTS & SOUNDS</span>
+        </div>
+      </div>
+      <p class="footer-copy">© 2025 M-Audio Pro Sound. All rights reserved. Corella, Bohol.</p>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#packages">Packages</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase SDK -->
+  
+<!-- ════════════════════════════════════════════
+     QUICK ACCESS MODAL — fires on BOOK NOW click
+════════════════════════════════════════════ -->
+<div class="qa-overlay" id="qaOverlay" onclick="qaCloseOutside(event)">
+  <div class="qa-modal" id="qaModal">
+
+    <button class="qa-close" onclick="closeQAModal()" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Header -->
+    <div class="qa-header">
+      <div class="qa-eyebrow">M-AUDIO PRO SOUND · CORELLA, BOHOL</div>
+      <h2 class="qa-title">READY TO MAKE YOUR <span class="qa-title-red">EVENT UNFORGETTABLE?</span></h2>
+      <p class="qa-sub">Choose how you'd like to start. Our team responds within the hour.</p>
+    </div>
+
+    <!-- 4 Choice Cards -->
+    <div class="qa-grid">
+
+      <!-- Card 1: Browse Packages -->
+      <a class="qa-card" href="#packages" onclick="closeQAModal()">
+        <div class="qa-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+        </div>
+        <div class="qa-card-content">
+          <span class="qa-card-title">BROWSE PACKAGES</span>
+          <span class="qa-card-desc">20+ ready-made setups from ₱5,000. Basic PA, Weddings, Disco Mobile, LED Wall & more.</span>
+        </div>
+        <span class="qa-card-cta">VIEW ALL →</span>
+      </a>
+
+      <!-- Card 2: Custom Builder (featured) -->
+      <button class="qa-card qa-card-featured" onclick="closeQAModal();setTimeout(openCustomizer,80)">
+        <div class="qa-card-badge-top">MOST POPULAR</div>
+        <div class="qa-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+        </div>
+        <div class="qa-card-content">
+          <span class="qa-card-title">BUILD YOUR OWN</span>
+          <span class="qa-card-desc">Step-by-step customizer — pick your lighting, sound, and crew for a fully tailored quote.</span>
+        </div>
+        <span class="qa-card-cta">START BUILDING →</span>
+      </button>
+
+      <!-- Card 3: Call Now -->
+      <a class="qa-card" href="tel:09302617168">
+        <div class="qa-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.99 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg>
+        </div>
+        <div class="qa-card-content">
+          <span class="qa-card-title">CALL US NOW</span>
+          <span class="qa-card-val">0930 261 7168</span>
+          <span class="qa-card-desc">Speak directly with our team for instant availability check.</span>
+        </div>
+        <span class="qa-card-cta">TAP TO CALL →</span>
+      </a>
+
+      <!-- Card 4: Messenger -->
+      <a class="qa-card" href="https://m.me/maudioprosoundo" target="_blank" rel="noopener">
+        <div class="qa-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="qa-card-content">
+          <span class="qa-card-title">MESSAGE US</span>
+          <span class="qa-card-desc">Get a full price quote via Facebook Messenger. Typical reply: under 1 hour.</span>
+        </div>
+        <span class="qa-card-cta">OPEN CHAT →</span>
+      </a>
+
+    </div>
+
+    <!-- Footer trust bar -->
+    <div class="qa-trust-bar">
+      <span class="qa-trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        19+ Years in Business
+      </span>
+      <span class="qa-trust-div">·</span>
+      <span class="qa-trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        1,000+ Events Done
+      </span>
+      <span class="qa-trust-div">·</span>
+      <span class="qa-trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
+        10% Down to Secure Date
+      </span>
+      <span class="qa-trust-div">·</span>
+      <span class="qa-trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Corella, Bohol
+      </span>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Fullscreen lightbox viewer (photo enlarge + video playback) -->
+  <div class="lb-viewer" id="lbViewer" onclick="lbCloseOutside(event)">
+    <button class="lb-close" onclick="closeLbViewer()" aria-label="Close">✕</button>
+    <button class="lb-arrow lb-prev" id="lbPrev" onclick="lbNav(-1)">&#8592;</button>
+    <button class="lb-arrow lb-next" id="lbNext" onclick="lbNav(1)">&#8594;</button>
+    <div class="lb-media-wrap" id="lbMediaWrap">
+      <!-- Media injected by JS -->
+    </div>
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-counter" id="lbCounter"></div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="SUPABASE_CONFIG.js"></script>
+  <script src="MAUDIO.js"></script>
+  <script src="config.js"></script>
+</body>
+</html>
